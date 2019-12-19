@@ -48,7 +48,7 @@ export default {
   background-color: var(--grey);
   /* decreases the width with the box-shadow width */
   width: calc(var(--top-view-width) - 6px);
-  height: 15rem;
+  min-width: 18rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

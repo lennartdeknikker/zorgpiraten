@@ -50,10 +50,6 @@ html {
   background-size: 40px 40px;
 }
 
-header {
-  height: 10rem;
-}
-
 #app {
   font-family: var(--font-family-tenso);
   color: var(--textcolor);
@@ -74,6 +70,6 @@ header {
 }
 
 .explanation {
-  margin: 0 0 2rem;
+  margin: 0 0 2.5rem;
 }
 </style>
