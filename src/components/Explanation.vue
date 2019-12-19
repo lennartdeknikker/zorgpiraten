@@ -33,6 +33,7 @@ export default {
 }
 
 .title {
+  font-family: var(--font-family-tenso);
   font-size: 2rem;
   font-weight: 100;
   margin: 0;
@@ -72,7 +73,4 @@ export default {
   margin: 0 0 1rem ;
 }
 
-h1 {
-  font-family: var(--font-family);
-}
 </style>
