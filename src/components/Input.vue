@@ -25,6 +25,7 @@ export default {};
 .input-elements-container {
   width: var(--top-view-width);
   min-width: 18rem;
+  max-width: 35rem;
   display: flex;
   justify-content: space-between;
 }

@@ -26,7 +26,9 @@ export default {
 
 <style>
 .explanation-container {
-  width: 100%;
+  width: calc(var(--top-view-width) - 6px);
+  min-width: 18rem;
+  max-width: 35rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,8 +50,6 @@ export default {
 .text-container {
   background-color: var(--grey);
   /* decreases the width with the box-shadow width */
-  width: calc(var(--top-view-width) - 6px);
-  min-width: 18rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
