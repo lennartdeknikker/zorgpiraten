@@ -1,19 +1,22 @@
 <template>
   <div id="app">
     <Logo class="logo-small" />
-    <Explanation />
+    <Explanation class="explanation" />
+    <Input />
   </div>
 </template>
 
 <script>
-import Explanation from "./components/Explanation.vue";
 import Logo from "./components/Logo.vue";
+import Explanation from "./components/Explanation.vue";
+import Input from "./components/Input.vue";
 
 export default {
   name: "app",
   components: {
+    Logo,
     Explanation,
-    Logo
+    Input
   }
 };
 </script>
@@ -35,16 +38,24 @@ export default {
   --font-family-tenso: "Tenso", Helvetica, Arial, "Nimbus Sans L", sans-serif;
   --font-family-zilla: "Zilla Slab", Georgia, "Times New Roman", "DejaVu Serif",
     serif;
+  /* widths */
+  --top-view-width: 50%;
 }
 
 /* main app styling */
 html {
-  background-color: var(--purple-light);
+  background-color: var(--grey-light);
+  background-image: radial-gradient(var(--blue-light) 5%, var(--grey-light) 5%);
+  background-position: 0 0;
+  background-size: 40px 40px;
+}
+
+header {
+  height: 10rem;
 }
 
 #app {
   font-family: var(--font-family-tenso);
-  font-weight: 700;
   color: var(--textcolor);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -58,6 +69,11 @@ html {
 }
 
 .logo-small {
-  width: 5em;
+  width: 7rem;
+  align-self: flex-start;
+}
+
+.explanation {
+  margin: 0 0 2rem;
 }
 </style>
