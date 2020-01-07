@@ -23,6 +23,7 @@ export default {
   methods: {
     async fetchData() {
       let data = await d3.json("./data.json");
+      
       this.loadData = data;
     }
   }

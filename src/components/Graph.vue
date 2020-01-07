@@ -53,24 +53,56 @@ export default {
   },
   methods: {
     renderChart(values) {
-      const svg_width = 1000;
-      const svg_height = 600;
+      const svg_width = 1500;
+      const svg_height = 30000;
+      const colorScale = d3
+        .scaleLinear()
+        .domain([-100, -50, 0, 50, 100])
+        .range(["red", "yellow", "green", "yellow", "red"]);
 
       const svg = d3
         .select(".graph")
         .attr("width", svg_width)
         .attr("height", svg_height);
 
+      function handleMouseOver() {
+        const object = d3.select(this);
+        d3.select(".graph")
+          .append("text")
+          .attr("x", object.x)
+          .attr("y", object.y);
+      }
+
       svg
-        .selectAll(".dataPoint")
+        .selectAll(".dataGroup")
         .data(values)
+        .enter()
+        .append("g")
+        .attr("data-key", d => d.key)
+        .attr("class", "dataGroup")
+        .selectAll(".dataPoint")
+        .data(d => d.values)
         .enter()
         .append("circle")
         .attr("class", "dataPoint")
-        .attr("r", d => d.amount / 4)
-        .attr("cx", svg_width / 2)
+        .attr("data-revenue", d => d.perc_winst)
+        .on("mouseover", handleMouseOver)
+        .attr("r", 6)
+        .attr("data-index", (d, i) => i)
+        .attr("cx", (d, i) => {
+          if (i == 0) {
+            return svg_width / 2;
+          } else if (i % 2 == 0) {
+            return svg_width / 2 + 20 * (i / 2);
+          } else {
+            return svg_width / 2 - 20 * (i / 2) - 10;
+          }
+        })
         .attr("cy", d => {
-          return d.key * 4 + svg_height / 2;
+          return -d.perc_winst * 150 + svg_height / 2;
+        })
+        .style("fill", d => {
+          return colorScale(d.perc_winst);
         });
     }
   }
