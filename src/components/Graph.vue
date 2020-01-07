@@ -56,8 +56,8 @@ export default {
   },
   methods: {
     renderChart(values) {
-      const svg_width = 1500;
-      const svg_height = 30000;
+      const svg_width = 3000;
+      const svg_height = 4100;
       const colorScale = d3
         .scaleLinear()
         .domain([-100, -50, 0, 50, 100])
@@ -106,7 +106,7 @@ export default {
           }
         })
         .attr("cy", d => {
-          return -d.perc_winst * 150 + svg_height / 2;
+          return -Math.round(d.perc_winst) * 20 + svg_height / 2;
         })
         .style("fill", d => {
           return colorScale(d.perc_winst);
