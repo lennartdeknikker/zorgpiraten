@@ -1,8 +1,13 @@
 <template>
   <div id="app">
-    <Logo class="logo-small" />
-    <Explanation class="explanation" />
-    <Input />
+    <Logo class="logo-header" />
+    <div class="view1">
+      <Explanation class="explanation" />
+      <Input />
+    </div>
+    <div class="view2">
+      <Main></Main>
+    </div>
   </div>
 </template>
 
@@ -10,18 +15,21 @@
 import Logo from "./components/Logo.vue";
 import Explanation from "./components/Explanation.vue";
 import Input from "./components/Input.vue";
+import Main from "./components/Main.vue";
 
 export default {
   name: "app",
   components: {
     Logo,
     Explanation,
-    Input
+    Input,
+    Main
   }
 };
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap");
 
 :root {
@@ -48,6 +56,11 @@ html {
   background-image: radial-gradient(var(--blue-light) 5%, var(--grey-light) 5%);
   background-position: 0 0;
   background-size: 40px 40px;
+  background-attachment: fixed;
+}
+
+body {
+  margin: 0;
 }
 
 #app {
@@ -58,15 +71,39 @@ html {
   text-align: center;
   color: #2c3e50;
   width: 100%;
-  height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "view1"
+    "view2";
+  grid-template-rows: 10vh 90vh 100vh;
   flex-direction: column;
   align-items: center;
 }
 
-.logo-small {
+.view1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 15%;
+  box-sizing: border-box;
+  grid-area: view1;
+}
+
+.view2 {
+  width: 100%;
+  display: flex;
+  grid-area: view2;
+  height: 100%;
+}
+
+.logo-header {
   width: 7rem;
   align-self: flex-start;
+  grid-area: header;
+  margin: 0.5rem;
 }
 
 .explanation {

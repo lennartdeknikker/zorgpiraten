@@ -1,6 +1,6 @@
 <template>
   <div class="input-elements-container">
-    <button class="start-button">START</button>
+    <button class="start-button" @click="scrollTo('.view2')">START</button>
     <span class="input-divider-text">OF</span>
     <div class="search-bar">
       <svg aria-hidden="true" class="icon-search" viewBox="-8 -1 35 18">
@@ -18,7 +18,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    scrollTo: function(selector) {
+      document.querySelector(selector).scrollIntoView({ behavior: "smooth" });
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -38,6 +44,7 @@ export default {};
   color: var(--grey-light);
   font-weight: 700;
   font-size: 1.3em;
+  font-family: var(--font-family-tenso);
 }
 
 .search-bar {
@@ -69,5 +76,6 @@ export default {};
   align-items: center;
   margin: 0 1rem;
   flex-wrap: wrap;
+  font-family: var(--font-family-tenso);
 }
 </style>
