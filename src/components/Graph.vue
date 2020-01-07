@@ -75,7 +75,7 @@ export default {
 
       function handleMouseOver(d) {
         div
-          .html(d.bedrijfsnaam + "<br />" + d.perc_winst)
+          .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%")
           .style("left", d3.event.pageX + 30 + "px")
           .style("top", d3.event.pageY - 28 + "px");
       }
@@ -94,7 +94,7 @@ export default {
         .attr("class", "dataPoint")
         .attr("data-revenue", d => d.perc_winst)
         .on("mouseover", d => handleMouseOver(d))
-        .attr("r", 6)
+        .attr("r", 8)
         .attr("data-index", (d, i) => i)
         .attr("cx", (d, i) => {
           if (i == 0) {
