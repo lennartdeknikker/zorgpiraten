@@ -38,6 +38,9 @@ export default {
       });
       result.forEach(element => {
         element.amount = element.values.length;
+        element.values.sort(function(a, b) {
+          return b.perc_winst - a.perc_winst;
+        });
       });
       result.sort(function(a, b) {
         return b.key - a.key;
@@ -65,12 +68,16 @@ export default {
         .attr("width", svg_width)
         .attr("height", svg_height);
 
-      function handleMouseOver() {
-        const object = d3.select(this);
-        d3.select(".graph")
-          .append("text")
-          .attr("x", object.x)
-          .attr("y", object.y);
+      const div = d3
+        .select("body")
+        .append("div")
+        .attr("class", "tooltip");
+
+      function handleMouseOver(d) {
+        div
+          .html(d.bedrijfsnaam + "<br />" + d.perc_winst)
+          .style("left", d3.event.pageX + 30 + "px")
+          .style("top", d3.event.pageY - 28 + "px");
       }
 
       svg
@@ -86,7 +93,7 @@ export default {
         .append("circle")
         .attr("class", "dataPoint")
         .attr("data-revenue", d => d.perc_winst)
-        .on("mouseover", handleMouseOver)
+        .on("mouseover", d => handleMouseOver(d))
         .attr("r", 6)
         .attr("data-index", (d, i) => i)
         .attr("cx", (d, i) => {
@@ -108,3 +115,22 @@ export default {
   }
 };
 </script>
+
+<style>
+.tooltip {
+  width: 8em;
+  height: 8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: red;
+  position: absolute;
+  text-align: center;
+  border: 2px solid green;
+}
+
+.dataPoint:hover {
+  stroke: blue;
+}
+</style>
