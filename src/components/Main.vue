@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Graph</h1>
+    <h1>Main</h1>
     <Graph :data="loadData"></Graph>
   </div>
 </template>

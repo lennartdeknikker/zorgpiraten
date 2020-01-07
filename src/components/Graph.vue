@@ -1,11 +1,15 @@
 <template>
   <div>
-    <h2>{{ msg }}</h2>
-    <svg class="graph" :height="height" :width="width"></svg>
+    <h2>Graph</h2>
+    <svg class="graph"></svg>
+    <h2>Data List</h2>
     <ul v-for="element of transformedData" :key="element.key">
       <li>{{ element.key }}: {{ element.amount }}</li>
       <ul>
-        <li v-for="value of element.values" :key="value.concerncode">
+        <li
+          v-for="value of element.values"
+          :key="value.concerncode + value.jaar"
+        >
           {{ value.bedrijfsnaam }}
         </li>
       </ul>
@@ -22,12 +26,11 @@ export default {
   },
   data: function() {
     return {
-      msg: "This is a chart",
-      height: 600,
-      width: 600
+      chart: null
     };
   },
   computed: {
+    // filters entries with impossible revenue values
     transformedData() {
       let result = this.data;
       result = result.filter(value => {
@@ -42,10 +45,34 @@ export default {
       return result;
     }
   },
-  created() {
-    this.colourScale = d3
-      .scaleOrdinal()
-      .range(["#FFFFFF", "#FE9922", "#93c464"]);
+  watch: {
+    transformedData(values) {
+      if (this.chart != null) this.chart.remove();
+      this.renderChart(values);
+    }
+  },
+  methods: {
+    renderChart(values) {
+      const svg_width = 1000;
+      const svg_height = 600;
+
+      const svg = d3
+        .select(".graph")
+        .attr("width", svg_width)
+        .attr("height", svg_height);
+
+      svg
+        .selectAll(".dataPoint")
+        .data(values)
+        .enter()
+        .append("circle")
+        .attr("class", "dataPoint")
+        .attr("r", d => d.amount / 4)
+        .attr("cx", svg_width / 2)
+        .attr("cy", d => {
+          return d.key * 4 + svg_height / 2;
+        });
+    }
   }
 };
 </script>
