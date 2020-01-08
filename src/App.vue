@@ -96,6 +96,7 @@ body {
   width: 100%;
   display: flex;
   grid-area: view2;
+  justify-content: center;
   height: 100%;
 }
 
