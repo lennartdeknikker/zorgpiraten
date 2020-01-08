@@ -19,7 +19,12 @@ export default {
     transformedData() {
       let result = this.data;
       result = result.filter(value => {
-        return !isNaN(value.key) && value.key < 100 && value.key > -100;
+        return (
+          !isNaN(value.key) &&
+          value.key < 100 &&
+          value.key > -100 &&
+          value.key != null
+        );
       });
       result.forEach(element => {
         element.amount = element.values.length;
