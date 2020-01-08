@@ -2,7 +2,7 @@
   <div class="main-container">
     <h1>Winstpercentages</h1>
     <div>
-      <form action="#" @submit.prevent>
+      <form action="#" @submit.prevent="scroll">
         <fieldset>
           <label for="year">Kies een jaar:</label><br />
           <input v-model="selectedYear" type="radio" name="year" value="2018" />
@@ -17,6 +17,7 @@
         <fieldset>
           <label for="search">Zoek een zorginstelling: </label><br />
           <input v-model="searchText" type="text" name="search" />
+          <button type="submit">zoek</button>
         </fieldset>
         <fieldset>
           <label for="category">Kies een categorie:</label><br />
@@ -134,8 +135,10 @@ export default {
       for (let node of this.matches) {
         node.classList.add("highlight");
       }
+    },
+    scroll() {
       document
-        .querySelectorAll("[data-name*='Chr']")[0]
+        .querySelector(`[data-name*=${this.searchText.toLowerCase()}]`)
         .scrollIntoView({ behavior: "smooth" });
     }
   }
