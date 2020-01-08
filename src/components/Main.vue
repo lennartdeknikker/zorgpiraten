@@ -15,11 +15,6 @@
           2015
         </fieldset>
         <fieldset>
-          <label for="search">Zoek een zorginstelling: </label><br />
-          <input v-model="searchText" type="text" name="search" />
-          <button type="submit">zoek</button>
-        </fieldset>
-        <fieldset>
           <label for="category">Kies een categorie:</label><br />
           <input
             v-model="selectedCategory"
@@ -49,6 +44,11 @@
             value="thuiszorg"
           />
           thuiszorg
+        </fieldset>
+        <fieldset>
+          <label for="search">Zoek een zorginstelling: </label><br />
+          <input v-model="searchText" type="text" name="search" />
+          <button type="submit">zoek</button>
         </fieldset>
       </form>
     </div>
