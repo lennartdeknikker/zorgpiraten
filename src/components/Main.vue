@@ -2,7 +2,7 @@
   <div class="main-container">
     <h1>Winstpercentages</h1>
     <div>
-      <form action="#">
+      <form action="#" @submit.prevent>
         <fieldset>
           <label for="year">Kies een jaar:</label><br />
           <input v-model="selectedYear" type="radio" name="year" value="2018" />
@@ -50,7 +50,6 @@
           thuiszorg
         </fieldset>
       </form>
-      {{ matches }}
     </div>
     <Graph :data="dataToShow" :year="selectedYear"></Graph>
   </div>
