@@ -1,19 +1,6 @@
 <template>
-  <div>
-    <h2>Graph</h2>
-    <svg class="graph"></svg>
-    <h2>Data List</h2>
-    <ul v-for="element of transformedData" :key="element.key">
-      <li>{{ element.key }}: {{ element.amount }}</li>
-      <ul>
-        <li
-          v-for="value of element.values"
-          :key="value.concerncode + value.jaar"
-        >
-          {{ value.bedrijfsnaam }}
-        </li>
-      </ul>
-    </ul>
+  <div class="graph">
+    {{ year }}
   </div>
 </template>
 
@@ -22,7 +9,8 @@ import * as d3 from "d3";
 
 export default {
   props: {
-    data: Array
+    data: Array,
+    year: String
   },
   data: function() {
     return {
@@ -34,7 +22,12 @@ export default {
     transformedData() {
       let result = this.data;
       result = result.filter(value => {
-        return !isNaN(value.key) && value.key < 100 && value.key > -100;
+        return (
+          !isNaN(value.key) &&
+          value.key < 100 &&
+          value.key > -100 &&
+          value.key != null
+        );
       });
       result.forEach(element => {
         element.amount = element.values.length;
@@ -56,67 +49,70 @@ export default {
   },
   methods: {
     renderChart(values) {
-      const svg_width = 3000;
-      const svg_height = 4100;
       const colorScale = d3
         .scaleLinear()
         .domain([-100, -20, 0, 20, 100])
-        .range(["red", "yellow", "green", "yellow", "red"]);
+        .range(["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]);
 
-      const svg = d3
+      this.chart = d3.select(".graph").append("div");
+      const tooltip = d3
         .select(".graph")
-        .attr("width", svg_width)
-        .attr("height", svg_height);
-
-      const div = d3
-        .select("body")
         .append("div")
         .attr("class", "tooltip");
 
       function handleMouseOver(d) {
-        div
+        tooltip
           .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%")
           .style("left", d3.event.pageX + 30 + "px")
-          .style("top", d3.event.pageY - 28 + "px");
+          .style("top", d3.event.pageY - 28 + "px")
+          .style("display", "flex");
       }
 
-      svg
-        .selectAll(".dataGroup")
+      function handleMouseOut() {
+        tooltip.style("display", "none");
+      }
+
+      this.chart
+        .selectAll(".item")
         .data(values)
         .enter()
-        .append("g")
-        .attr("data-key", d => d.key)
-        .attr("class", "dataGroup")
+        .append("div")
+        .attr("class", (d, i) => {
+          if (i % 2 == 0) {
+            return "dataGroup row-type-1";
+          } else return "dataGroup row-type-2";
+        })
         .selectAll(".dataPoint")
         .data(d => d.values)
         .enter()
-        .append("circle")
+        .append("div")
         .attr("class", "dataPoint")
-        .attr("data-revenue", d => d.perc_winst)
-        .on("mouseover", d => handleMouseOver(d))
-        .attr("r", 20)
-        .attr("data-index", (d, i) => i)
-        .attr("cx", (d, i) => {
-          if (i == 0) {
-            return svg_width / 2;
-          } else if (i % 2 == 0) {
-            return svg_width / 2 + 20 * (i / 2);
-          } else {
-            return svg_width / 2 - 20 * (i / 2) - 10;
-          }
-        })
-        .attr("cy", d => {
-          return -Math.round(d.perc_winst) * 20 + svg_height / 2;
-        })
-        .style("fill", d => {
+        .style("background-color", d => {
           return colorScale(d.perc_winst);
-        });
+        })
+        .attr("data-name", d => d.bedrijfsnaam.toLowerCase())
+        .on("mouseover", handleMouseOver)
+        .on("mouseout", handleMouseOut);
+
+      d3.selectAll(".dataGroup")
+        .append("p")
+        .attr("class", "label")
+        .html(d => d.key + " %");
     }
   }
 };
 </script>
 
 <style>
+.graph {
+  width: 100%;
+}
+
+.label {
+  display: block;
+  width: 100%;
+}
+
 .tooltip {
   width: 8em;
   height: 8em;
@@ -128,9 +124,21 @@ export default {
   position: absolute;
   text-align: center;
   border: 2px solid green;
+  display: none;
 }
 
-.dataPoint:hover {
-  stroke: blue;
+.dataGroup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.dataPoint {
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  border-radius: 100%;
 }
 </style>

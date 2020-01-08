@@ -3,7 +3,7 @@
     <h1>Winstpercentages</h1>
     <div>
       <form action="#">
-        <fieldset @change="fetchData">
+        <fieldset>
           <label for="year">Kies een jaar:</label><br />
           <input v-model="selectedYear" type="radio" name="year" value="2018" />
           2018<br />
@@ -16,7 +16,7 @@
         </fieldset>
         <fieldset>
           <label for="search">Zoek een zorginstelling: </label><br />
-          <input type="text" name="search" />
+          <input v-model="searchText" type="text" name="search" />
         </fieldset>
         <fieldset>
           <label for="category">Kies een categorie:</label><br />
@@ -50,13 +50,14 @@
           thuiszorg
         </fieldset>
       </form>
+      {{ matches }}
     </div>
     <Graph :data="dataToShow" :year="selectedYear"></Graph>
   </div>
 </template>
 
 <script>
-import Graph from "./Graph2.vue";
+import Graph from "./Graph.vue";
 import * as d3 from "d3";
 export default {
   components: {
@@ -66,9 +67,11 @@ export default {
     return {
       rawData: [],
       selectedYear: "2018",
-      selectedCategory: "thuiszorg",
+      selectedCategory: "alles",
       dataForSelectedYear: [],
-      dataToShow: []
+      dataToShow: [],
+      searchText: "",
+      matches: []
     };
   },
   mounted() {
@@ -90,6 +93,13 @@ export default {
     categorizedData: function() {
       this.filterCategorizedDataByYear();
       this.nestDataByRevenueValues();
+    },
+    selectedYear: function() {
+      this.filterCategorizedDataByYear();
+      this.nestDataByRevenueValues();
+    },
+    searchText: function() {
+      this.highlightMatches();
     }
   },
   methods: {
@@ -113,6 +123,21 @@ export default {
         element.key = element.key * 10;
       });
       this.dataToShow = nestedData;
+    },
+    highlightMatches() {
+      let nodes = document.querySelectorAll(".highlight");
+      for (let node of nodes) {
+        node.classList.remove("highlight");
+      }
+      this.matches = document.querySelectorAll(
+        `[data-name*=${this.searchText.toLowerCase()}]`
+      );
+      for (let node of this.matches) {
+        node.classList.add("highlight");
+      }
+      document
+        .querySelectorAll("[data-name*='Chr']")[0]
+        .scrollIntoView({ behavior: "smooth" });
     }
   }
 };
@@ -126,5 +151,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.highlight {
+  border: 10px solid red;
 }
 </style>
