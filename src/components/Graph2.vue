@@ -1,5 +1,7 @@
 <template>
-  <div class="graph"></div>
+  <div class="graph">
+    {{ year }}
+  </div>
 </template>
 
 <script>
@@ -7,7 +9,8 @@ import * as d3 from "d3";
 
 export default {
   props: {
-    data: Array
+    data: Array,
+    year: String
   },
   data: function() {
     return {
@@ -51,7 +54,7 @@ export default {
         .domain([-100, -20, 0, 20, 100])
         .range(["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]);
 
-      const div = d3.select(".graph");
+      this.chart = d3.select(".graph").append("div");
       const tooltip = d3
         .select(".graph")
         .append("div")
@@ -61,10 +64,15 @@ export default {
         tooltip
           .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%")
           .style("left", d3.event.pageX + 30 + "px")
-          .style("top", d3.event.pageY - 28 + "px");
+          .style("top", d3.event.pageY - 28 + "px")
+          .style("display", "flex");
       }
 
-      div
+      function handleMouseOut() {
+        tooltip.style("display", "none");
+      }
+
+      this.chart
         .selectAll(".item")
         .data(values)
         .enter()
@@ -85,7 +93,8 @@ export default {
         })
         .attr("data-revenue", d => d.perc_winst)
         .attr("data-index", (d, i) => i)
-        .on("mouseover", handleMouseOver);
+        .on("mouseover", handleMouseOver)
+        .on("mouseout", handleMouseOut);
 
       d3.selectAll(".dataGroup")
         .append("p")
@@ -117,6 +126,7 @@ export default {
   position: absolute;
   text-align: center;
   border: 2px solid green;
+  display: none;
 }
 
 .dataGroup {
