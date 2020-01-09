@@ -69,6 +69,7 @@ export default {
       selectedYear: "2018",
       selectedCategory: "alles",
       dataForSelectedYear: [],
+      nestedData: [],
       dataToShow: [],
       searchText: "",
       matches: []
@@ -122,7 +123,29 @@ export default {
         element.amount = element.values.length;
         element.key = element.key * 10;
       });
-      this.dataToShow = nestedData;
+      this.nestedData = nestedData;
+      this.RemoveUnwantedValues();
+    },
+    RemoveUnwantedValues() {
+      let dataToShow = this.nestedData;
+      dataToShow = dataToShow.filter(value => {
+        return (
+          !isNaN(value.key) &&
+          value.key < 100 &&
+          value.key > -100 &&
+          value.key != null
+        );
+      });
+      dataToShow.forEach(element => {
+        element.amount = element.values.length;
+        element.values.sort(function(a, b) {
+          return b.perc_winst - a.perc_winst;
+        });
+      });
+      dataToShow.sort(function(a, b) {
+        return b.key - a.key;
+      });
+      this.dataToShow = dataToShow;
     },
     highlightMatches() {
       let nodes = document.querySelectorAll(".highlight");

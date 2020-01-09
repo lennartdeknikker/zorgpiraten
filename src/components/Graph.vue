@@ -1,6 +1,10 @@
 <template>
-  <div class="graph">
-    {{ year }}
+  <div>
+    <h2>
+      {{ year }}
+    </h2>
+    <div class="graph"></div>
+    <div class="tooltip"></div>
   </div>
 </template>
 
@@ -13,38 +17,12 @@ export default {
     year: String
   },
   data: function() {
-    return {
-      chart: null
-    };
-  },
-  computed: {
-    // filters entries with impossible revenue values
-    transformedData() {
-      let result = this.data;
-      result = result.filter(value => {
-        return (
-          !isNaN(value.key) &&
-          value.key < 100 &&
-          value.key > -100 &&
-          value.key != null
-        );
-      });
-      result.forEach(element => {
-        element.amount = element.values.length;
-        element.values.sort(function(a, b) {
-          return b.perc_winst - a.perc_winst;
-        });
-      });
-      result.sort(function(a, b) {
-        return b.key - a.key;
-      });
-      return result;
-    }
+    return {};
   },
   watch: {
-    transformedData(values) {
-      if (this.chart != null) this.chart.remove();
-      this.renderChart(values);
+    data(d) {
+      this.renderChart(d);
+      this.renderChart(d);
     }
   },
   methods: {
@@ -54,47 +32,66 @@ export default {
         .domain([-100, -20, 0, 20, 100])
         .range(["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]);
 
-      this.chart = d3.select(".graph").append("div");
-      const tooltip = d3
-        .select(".graph")
-        .append("div")
-        .attr("class", "tooltip");
+      const tooltip = d3.select(".tooltip");
 
       function handleMouseOver(d) {
         tooltip
           .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%")
           .style("left", d3.event.pageX + 30 + "px")
           .style("top", d3.event.pageY - 28 + "px")
-          .style("display", "flex");
+          .transition()
+          .duration(500)
+          .style("opacity", "1");
       }
 
       function handleMouseOut() {
-        tooltip.style("display", "none");
+        tooltip
+          .transition()
+          .duration(500)
+          .style("opacity", "0");
       }
 
-      this.chart
-        .selectAll(".item")
-        .data(values)
+      let graph = d3
+        .select(".graph")
+        .selectAll(".data-group")
+        .data(values);
+
+      graph
         .enter()
         .append("div")
-        .attr("class", (d, i) => {
-          if (i % 2 == 0) {
-            return "dataGroup row-type-1";
-          } else return "dataGroup row-type-2";
-        })
-        .selectAll(".dataPoint")
-        .data(d => d.values)
+        .merge(graph)
+        .attr("class", "data-group");
+
+      graph.exit().remove();
+
+      let dataPoints = graph.selectAll(".dataPoint").data(d => d.values);
+
+      dataPoints
         .enter()
         .append("div")
+        .merge(dataPoints)
         .attr("class", "dataPoint")
         .style("background-color", d => {
           return colorScale(d.perc_winst);
         })
         .attr("data-name", d => d.bedrijfsnaam.toLowerCase())
         .on("mouseover", handleMouseOver)
-        .on("mouseout", handleMouseOut);
+        .on("mouseout", handleMouseOut)
+        .transition()
+        .duration(800)
+        .style("opacity", "1");
 
-      d3.selectAll(".dataGroup")
+      dataPoints
+        .exit()
+        .transition()
+        .duration(800)
+        .style("opacity", "0")
+        .remove();
+
+      let labels = d3.selectAll(".label");
+      labels.remove();
+
+      d3.selectAll(".data-group")
         .append("p")
         .attr("class", "label")
         .html(d => d.key + " %");
@@ -124,10 +121,11 @@ export default {
   position: absolute;
   text-align: center;
   border: 2px solid green;
-  display: none;
+  display: flex;
+  opacity: 0;
 }
 
-.dataGroup {
+.data-group {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -138,8 +136,8 @@ export default {
 .dataPoint {
   width: 40px;
   height: 40px;
-  background-color: red;
   border-radius: 100%;
   margin: 0.2em;
+  opacity: 0;
 }
 </style>
