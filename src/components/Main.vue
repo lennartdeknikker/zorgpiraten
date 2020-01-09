@@ -68,6 +68,7 @@ export default {
       rawData: [],
       selectedYear: "2018",
       selectedCategory: "alles",
+      categorizedData: [],
       dataForSelectedYear: [],
       nestedData: [],
       dataToShow: [],
@@ -78,26 +79,19 @@ export default {
   mounted() {
     this.fetchData();
   },
-  computed: {
-    categorizedData: function() {
-      if (this.selectedCategory != "alles") {
-        let categorized = this.rawData.filter(
-          item =>
-            item[this.selectedCategory] === "ja" ||
-            item[this.selectedCategory] === "yes"
-        );
-        return categorized;
-      } else return this.rawData;
-    }
-  },
+  computed: {},
   watch: {
-    categorizedData: function() {
+    selectedCategory: function() {
+      this.categorizeData();
       this.filterCategorizedDataByYear();
       this.nestDataByRevenueValues();
+      this.RemoveUnwantedValues();
     },
     selectedYear: function() {
+      this.categorizeData();
       this.filterCategorizedDataByYear();
       this.nestDataByRevenueValues();
+      this.RemoveUnwantedValues();
     },
     searchText: function() {
       this.highlightMatches();
@@ -106,6 +100,16 @@ export default {
   methods: {
     async fetchData() {
       this.rawData = await d3.json("./rawData.json");
+    },
+    categorizeData() {
+      if (this.selectedCategory != "alles") {
+        let categorized = this.rawData.filter(
+          item =>
+            item[this.selectedCategory] === "ja" ||
+            item[this.selectedCategory] === "yes"
+        );
+        this.categorizedData = categorized;
+      } else this.categorizedData = this.rawData;
     },
     filterCategorizedDataByYear() {
       this.dataForSelectedYear = this.categorizedData.filter(
@@ -124,7 +128,6 @@ export default {
         element.key = element.key * 10;
       });
       this.nestedData = nestedData;
-      this.RemoveUnwantedValues();
     },
     RemoveUnwantedValues() {
       let dataToShow = this.nestedData;

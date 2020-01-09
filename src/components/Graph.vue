@@ -39,6 +39,7 @@ export default {
           .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%")
           .style("left", d3.event.pageX + 30 + "px")
           .style("top", d3.event.pageY - 28 + "px")
+          .style("z-index", "1")
           .transition()
           .duration(500)
           .style("opacity", "1");
@@ -48,7 +49,8 @@ export default {
         tooltip
           .transition()
           .duration(500)
-          .style("opacity", "0");
+          .style("opacity", "0")
+          .style("z-index", "-1");
       }
 
       let graph = d3
@@ -121,7 +123,6 @@ export default {
   position: absolute;
   text-align: center;
   border: 2px solid green;
-  display: flex;
   opacity: 0;
 }
 
