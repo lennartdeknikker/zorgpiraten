@@ -157,5 +157,7 @@ export default {
 
 .highlight {
   border: 10px solid red;
+  width: 20px;
+  height: 20px;
 }
 </style>

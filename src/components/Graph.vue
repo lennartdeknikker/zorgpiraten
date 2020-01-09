@@ -140,5 +140,6 @@ export default {
   height: 40px;
   background-color: red;
   border-radius: 100%;
+  margin: 0.2em;
 }
 </style>
