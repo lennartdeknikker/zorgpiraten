@@ -49,6 +49,26 @@
           <label for="search">Zoek een zorginstelling: </label><br />
           <input v-model="searchText" type="text" name="search" />
           <button type="submit">zoek</button>
+          <p v-if="matches.length > 1">
+            {{ matches.length }} resultaten gevonden.
+          </p>
+          <p v-if="matches.length === 1">
+            {{ matches.length }} resultaat gevonden.
+          </p>
+          <div v-if="matches.length < 10">
+            <ul
+              class="search-result-list"
+              v-for="match of matches"
+              :key="match"
+            >
+              <li
+                class="search-result"
+                @click="match.scrollIntoView({ behavior: 'smooth' })"
+              >
+                {{ match.getAttribute("data-name") }}
+              </li>
+            </ul>
+          </div>
         </fieldset>
       </form>
     </div>
@@ -195,5 +215,15 @@ export default {
   border: 10px solid var(--purple);
   width: 20px;
   height: 20px;
+}
+
+.search-result {
+  cursor: pointer;
+  color: var(--purple);
+}
+
+.search-result-list {
+  list-style-type: none;
+  text-align: left;
 }
 </style>
