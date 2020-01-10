@@ -42,28 +42,28 @@
               name="category"
               value="alles"
             />
-            alles<br />
+            Alle zorg<br />
             <input
               v-model="selectedCategory"
               type="radio"
               name="category"
               value="geestelijkegezondheidszorg"
             />
-            geestelijke gezondheidszorg<br />
+            Geestelijke Gezondheidszorg<br />
             <input
               v-model="selectedCategory"
               type="radio"
               name="category"
               value="gehandicaptenzorg"
             />
-            gehandicaptenzorg<br />
+            Gehandicaptenzorg<br />
             <input
               v-model="selectedCategory"
               type="radio"
               name="category"
               value="thuiszorg"
             />
-            thuiszorg
+            Thuiszorg
           </fieldset>
           <fieldset>
             <label for="search">Zoek een zorginstelling: </label><br />
