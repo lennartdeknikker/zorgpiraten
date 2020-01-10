@@ -52,7 +52,7 @@
         </fieldset>
       </form>
     </div>
-    <Graph :data="dataToShow" :year="selectedYear"></Graph>
+    <Graph :revenueData="dataToShow"></Graph>
   </div>
 </template>
 
@@ -76,22 +76,26 @@ export default {
       matches: []
     };
   },
-  mounted() {
+  created() {
     this.fetchData();
   },
-  computed: {},
+  mounted() {
+    this.processData();
+  },
+  computed: {
+    TransformedSearchText: function() {
+      return this.searchText.toLowerCase().replace(/\s+/g, "-");
+    }
+  },
   watch: {
+    rawData: function() {
+      this.processData();
+    },
     selectedCategory: function() {
-      this.categorizeData();
-      this.filterCategorizedDataByYear();
-      this.nestDataByRevenueValues();
-      this.RemoveUnwantedValues();
+      this.processData();
     },
     selectedYear: function() {
-      this.categorizeData();
-      this.filterCategorizedDataByYear();
-      this.nestDataByRevenueValues();
-      this.RemoveUnwantedValues();
+      this.processData();
     },
     searchText: function() {
       this.highlightMatches();
@@ -100,6 +104,12 @@ export default {
   methods: {
     async fetchData() {
       this.rawData = await d3.json("./rawData.json");
+    },
+    processData() {
+      this.categorizeData();
+      this.filterCategorizedDataByYear();
+      this.nestDataByRevenueValues();
+      this.RemoveUnwantedValues();
     },
     categorizeData() {
       if (this.selectedCategory != "alles") {
@@ -156,7 +166,7 @@ export default {
         node.classList.remove("highlight");
       }
       this.matches = document.querySelectorAll(
-        `[data-name*=${this.searchText.toLowerCase()}]`
+        `[data-name*=${this.TransformedSearchText}]`
       );
       for (let node of this.matches) {
         node.classList.add("highlight");
@@ -164,7 +174,7 @@ export default {
     },
     scroll() {
       document
-        .querySelector(`[data-name*=${this.searchText.toLowerCase()}]`)
+        .querySelector(`[data-name*=${this.TransformedSearchText}]`)
         .scrollIntoView({ behavior: "smooth" });
     }
   }
@@ -182,7 +192,7 @@ export default {
 }
 
 .highlight {
-  border: 10px solid red;
+  border: 10px solid var(--purple);
   width: 20px;
   height: 20px;
 }

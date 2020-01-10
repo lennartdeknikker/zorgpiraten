@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h2>
-      {{ year }}
-    </h2>
-    <div class="graph"></div>
+    <div class="graph">
+      <div class="data-group"></div>
+    </div>
     <div class="tooltip"></div>
   </div>
 </template>
@@ -13,24 +12,48 @@ import * as d3 from "d3";
 
 export default {
   props: {
-    data: Array,
-    year: String
+    revenueData: Array
   },
   data: function() {
-    return {};
+    return {
+      colorScale: {
+        domain: [-100, -20, 0, 20, 100],
+        range: ["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]
+      },
+      tooltipInfo: {}
+    };
   },
   watch: {
-    data(d) {
-      this.renderChart(d);
-      this.renderChart(d);
+    revenueData(d) {
+      this.renderDataGroups(d).then(graph => this.renderDataPoints(graph));
+      this.renderLabels();
+      this.renderDataGroups(d).then(graph => this.renderDataPoints(graph));
+      this.renderLabels();
     }
   },
   methods: {
-    renderChart(values) {
+    async renderDataGroups(values) {
+      let graph = d3
+        .select(".graph")
+        .selectAll(".data-group")
+        .data(values);
+
+      graph
+        .enter()
+        .append("div")
+        .merge(graph)
+        .attr("class", "data-group");
+
+      graph.exit().remove();
+      return graph;
+    },
+    renderDataPoints(graph) {
+      let dataPoints = graph.selectAll(".dataPoint").data(d => d.values);
+
       const colorScale = d3
         .scaleLinear()
-        .domain([-100, -20, 0, 20, 100])
-        .range(["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]);
+        .domain(this.colorScale.domain)
+        .range(this.colorScale.range);
 
       const tooltip = d3.select(".tooltip");
 
@@ -53,21 +76,6 @@ export default {
           .style("z-index", "-1");
       }
 
-      let graph = d3
-        .select(".graph")
-        .selectAll(".data-group")
-        .data(values);
-
-      graph
-        .enter()
-        .append("div")
-        .merge(graph)
-        .attr("class", "data-group");
-
-      graph.exit().remove();
-
-      let dataPoints = graph.selectAll(".dataPoint").data(d => d.values);
-
       dataPoints
         .enter()
         .append("div")
@@ -76,7 +84,9 @@ export default {
         .style("background-color", d => {
           return colorScale(d.perc_winst);
         })
-        .attr("data-name", d => d.bedrijfsnaam.toLowerCase())
+        .attr("data-name", d => {
+          return d.bedrijfsnaam.replace(/\s+/g, "-").toLowerCase();
+        })
         .on("mouseover", handleMouseOver)
         .on("mouseout", handleMouseOut)
         .transition()
@@ -89,7 +99,8 @@ export default {
         .duration(800)
         .style("opacity", "0")
         .remove();
-
+    },
+    renderLabels() {
       let labels = d3.selectAll(".label");
       labels.remove();
 
@@ -118,11 +129,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  background-color: red;
+  color: var(--textcolor);
+  background-color: var(--blue-light);
   position: absolute;
   text-align: center;
-  border: 2px solid green;
   opacity: 0;
 }
 
@@ -140,5 +150,12 @@ export default {
   border-radius: 100%;
   margin: 0.2em;
   opacity: 0;
+  transition-property: transform, margin;
+  transition-duration: 0.3s, 0.5s;
+}
+
+.dataPoint:hover {
+  transform: scale(1.5);
+  margin: 0.7em;
 }
 </style>
