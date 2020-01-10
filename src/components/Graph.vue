@@ -22,10 +22,10 @@ export default {
     };
   },
   watch: {
-    revenueData(d) {
-      this.renderDataGroups(d).then(graph => this.renderDataPoints(graph));
+    async revenueData(d) {
+      await this.renderDataGroups(d).then(graph => this.renderDataPoints(graph));
       this.renderLabels();
-      this.renderDataGroups(d).then(graph => this.renderDataPoints(graph));
+      await this.renderDataGroups(d).then(graph => this.renderDataPoints(graph));
       this.renderLabels();
     }
   },
@@ -103,7 +103,7 @@ export default {
       labels.remove();
 
       d3.selectAll(".data-group")
-        .append("p")
+        .insert("p")
         .attr("class", "label")
         .html(d => d.key + " %");
     }
