@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div class="graph">
-      <div class="data-group"></div>
-    </div>
+  <div class="graph-container">
+    <h1>Visualisatie</h1>
     <div class="tooltip"></div>
   </div>
 </template>
@@ -34,7 +32,7 @@ export default {
   methods: {
     async renderDataGroups(values) {
       let graph = d3
-        .select(".graph")
+        .select(".graph-container")
         .selectAll(".data-group")
         .data(values);
 
@@ -114,13 +112,19 @@ export default {
 </script>
 
 <style>
-.graph {
+.graph-container {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .label {
   display: block;
   width: 100%;
+  min-width: 18rem;
+  max-width: 35rem;
 }
 
 .tooltip {
@@ -142,6 +146,8 @@ export default {
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 1em;
+  min-width: 18rem;
+  max-width: 35rem;
 }
 
 .dataPoint {

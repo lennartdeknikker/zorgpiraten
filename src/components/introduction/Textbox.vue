@@ -1,5 +1,5 @@
 <template>
-  <div id="explanation" class="explanation-container">
+  <div id="textbox" class="textbox-container">
     <h1 class="title"><span class="title-hashtag">#</span>ZorgCowboys</h1>
     <div class="text-container">
       <h2 class="first-header">De winstlijn</h2>
@@ -20,12 +20,12 @@
 
 <script>
 export default {
-  name: "Explanation"
+  name: "Textbox"
 };
 </script>
 
 <style>
-.explanation-container {
+.textbox-container {
   width: calc(var(--top-view-width) - 6px);
   min-width: 18rem;
   max-width: 35rem;

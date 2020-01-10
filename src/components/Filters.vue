@@ -1,94 +1,113 @@
 <template>
-  <div class="main-container">
-    <h1>Winstpercentages</h1>
-    <div>
-      <form action="#" @submit.prevent="scroll">
-        <fieldset>
-          <label for="year">Kies een jaar:</label><br />
-          <input v-model="selectedYear" type="radio" name="year" value="2018" />
-          2018<br />
-          <input v-model="selectedYear" type="radio" name="year" value="2017" />
-          2017<br />
-          <input v-model="selectedYear" type="radio" name="year" value="2016" />
-          2016<br />
-          <input v-model="selectedYear" type="radio" name="year" value="2015" />
-          2015
-        </fieldset>
-        <fieldset>
-          <label for="category">Kies een categorie:</label><br />
-          <input
-            v-model="selectedCategory"
-            type="radio"
-            name="category"
-            value="alles"
-          />
-          alles<br />
-          <input
-            v-model="selectedCategory"
-            type="radio"
-            name="category"
-            value="geestelijkegezondheidszorg"
-          />
-          geestelijke gezondheidszorg<br />
-          <input
-            v-model="selectedCategory"
-            type="radio"
-            name="category"
-            value="gehandicaptenzorg"
-          />
-          gehandicaptenzorg<br />
-          <input
-            v-model="selectedCategory"
-            type="radio"
-            name="category"
-            value="thuiszorg"
-          />
-          thuiszorg
-        </fieldset>
-        <fieldset>
-          <label for="search">Zoek een zorginstelling: </label><br />
-          <input v-model="searchText" type="text" name="search" />
-          <button type="submit">zoek</button>
-          <p v-if="matches.length > 1">
-            {{ matches.length }} resultaten gevonden.
-          </p>
-          <p v-if="matches.length === 1"></p>
-          <p v-if="matches.length === 1">
-            {{ matches.length }} resultaat gevonden.
-          </p>
-          <div v-if="matches.length < 10">
-            <ul
-              class="search-result-list"
-              v-for="match of matches"
-              :key="match"
-            >
-              <li
-                class="search-result"
-                @click="
-                  match.scrollIntoView({ behavior: 'smooth', block: 'center' })
-                "
+    <div class="filters-container">
+      <h1>Filters</h1>
+      <div>
+        <form action="#" @submit.prevent="scroll">
+          <fieldset>
+            <label for="year">Kies een jaar:</label><br />
+            <input
+              v-model="selectedYear"
+              type="radio"
+              name="year"
+              value="2018"
+            />
+            2018<br />
+            <input
+              v-model="selectedYear"
+              type="radio"
+              name="year"
+              value="2017"
+            />
+            2017<br />
+            <input
+              v-model="selectedYear"
+              type="radio"
+              name="year"
+              value="2016"
+            />
+            2016<br />
+            <input
+              v-model="selectedYear"
+              type="radio"
+              name="year"
+              value="2015"
+            />
+            2015
+          </fieldset>
+          <fieldset>
+            <label for="category">Kies een categorie:</label><br />
+            <input
+              v-model="selectedCategory"
+              type="radio"
+              name="category"
+              value="alles"
+            />
+            alles<br />
+            <input
+              v-model="selectedCategory"
+              type="radio"
+              name="category"
+              value="geestelijkegezondheidszorg"
+            />
+            geestelijke gezondheidszorg<br />
+            <input
+              v-model="selectedCategory"
+              type="radio"
+              name="category"
+              value="gehandicaptenzorg"
+            />
+            gehandicaptenzorg<br />
+            <input
+              v-model="selectedCategory"
+              type="radio"
+              name="category"
+              value="thuiszorg"
+            />
+            thuiszorg
+          </fieldset>
+          <fieldset>
+            <label for="search">Zoek een zorginstelling: </label><br />
+            <input v-model="searchText" type="text" name="search" />
+            <button type="submit">zoek</button>
+            <p v-if="matches.length > 1">
+              {{ matches.length }} resultaten gevonden.
+            </p>
+            <p v-if="matches.length === 1"></p>
+            <p v-if="matches.length === 1">
+              {{ matches.length }} resultaat gevonden.
+            </p>
+            <div v-if="matches.length < 10">
+              <ul
+                class="search-result-list"
+                v-for="match of matches"
+                :key="match"
               >
-                {{ match.getAttribute("data-name") }}
-              </li>
-            </ul>
-          </div>
-        </fieldset>
-      </form>
+                <li
+                  class="search-result"
+                  @click="
+                    match.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'center'
+                    })
+                  "
+                >
+                  {{ match.getAttribute("data-name") }}
+                </li>
+              </ul>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </div>
-    <Graph :revenueData="dataToShow"></Graph>
-  </div>
 </template>
 
 <script>
-import Graph from "./Graph.vue";
 import * as d3 from "d3";
 export default {
-  components: {
-    Graph
-  },
+  components: {},
+  props: ['rawData'],
   data() {
     return {
-      rawData: [],
       selectedYear: "2018",
       selectedCategory: "alles",
       categorizedData: [],
@@ -98,9 +117,6 @@ export default {
       searchText: "",
       matches: []
     };
-  },
-  created() {
-    this.fetchData();
   },
   mounted() {
     this.processData();
@@ -122,13 +138,15 @@ export default {
     },
     searchText: function() {
       this.highlightMatches();
+    },
+    dataToShow: function() {
+      this.$emit("selection-changed", this.dataToShow);
     }
   },
   methods: {
-    async fetchData() {
-      this.rawData = await d3.json("./rawData.json");
-    },
     processData() {
+      this.searchText = "";
+      this.matches = [];
       this.categorizeData();
       this.filterCategorizedDataByYear();
       this.nestDataByRevenueValues();
@@ -205,12 +223,12 @@ export default {
 </script>
 
 <style>
-.main-container {
-  width: calc(var(--top-view-width) - 6px);
-  min-width: 18rem;
-  max-width: 35rem;
+.filters-container {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="input-elements-container">
-    <button class="start-button" @click="scrollTo('.view2')">START</button>
+    <button class="start-button" @click="scrollTo('.filters')">START</button>
     <span class="input-divider-text">OF</span>
     <div class="search-bar">
       <svg aria-hidden="true" class="icon-search" viewBox="-8 -1 35 18">

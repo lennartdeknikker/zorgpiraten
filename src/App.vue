@@ -1,29 +1,44 @@
 <template>
   <div id="app">
     <Logo class="logo-header" />
-    <div class="view1">
-      <Explanation class="explanation" />
-      <Input />
-    </div>
-    <div class="view2">
-      <Main></Main>
-    </div>
+    <Introduction class="introduction" />
+    <Filters
+      class="filters"
+      :rawData="rawData"
+      @selection-changed="dataToShow = $event"
+    />
+    <Graph class="graph" :revenueData="dataToShow"></Graph>
   </div>
 </template>
 
 <script>
+import * as d3 from "d3";
 import Logo from "./components/Logo.vue";
-import Explanation from "./components/Explanation.vue";
-import Input from "./components/Input.vue";
-import Main from "./components/Main.vue";
+import Introduction from "./components/Introduction.vue";
+import Filters from "./components/Filters.vue";
+import Graph from "./components/Graph.vue";
 
 export default {
   name: "app",
   components: {
     Logo,
-    Explanation,
-    Input,
-    Main
+    Introduction,
+    Filters,
+    Graph
+  },
+  data() {
+    return {
+      rawData: [],
+      dataToShow: []
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      this.rawData = await d3.json("./rawData.json");
+    }
   }
 };
 </script>
@@ -50,7 +65,7 @@ export default {
   --top-view-width: 50%;
 }
 
-/* main app styling */
+/* Main app styling */
 html {
   background-color: var(--grey-light);
   background-image: radial-gradient(var(--blue-light) 5%, var(--grey-light) 5%);
@@ -74,40 +89,27 @@ body {
   display: grid;
   grid-template-areas:
     "header"
-    "view1"
-    "view2";
-  grid-template-rows: 10vh 90vh 100vh;
+    "introduction"
+    "filters"
+    "graph";
+  grid-template-rows: 10vh 90vh 100vh auto;
   flex-direction: column;
   align-items: center;
 }
 
-.view1 {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 15%;
-  box-sizing: border-box;
-  grid-area: view1;
+.introduction {
+  grid-area: introduction;
 }
 
-.view2 {
-  width: 100%;
-  display: flex;
-  grid-area: view2;
-  justify-content: center;
-  height: 100%;
+.filters {
+  grid-area: filters;
+}
+
+.graph {
+  grid-area: graph;
 }
 
 .logo-header {
-  width: 7rem;
-  align-self: flex-start;
   grid-area: header;
-  margin: 0.5rem;
-}
-
-.explanation {
-  margin: 0 0 2.5rem;
 }
 </style>
