@@ -52,6 +52,7 @@
           <p v-if="matches.length > 1">
             {{ matches.length }} resultaten gevonden.
           </p>
+          <p v-if="matches.length === 1"></p>
           <p v-if="matches.length === 1">
             {{ matches.length }} resultaat gevonden.
           </p>
@@ -63,7 +64,9 @@
             >
               <li
                 class="search-result"
-                @click="match.scrollIntoView({ behavior: 'smooth' })"
+                @click="
+                  match.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                "
               >
                 {{ match.getAttribute("data-name") }}
               </li>
