@@ -1,8 +1,32 @@
 [
-  "Thuiszorg Anahid B.V.",
-  "Thuiszorg Naborgh B.V.",
-  "Altenastaete Thuiszorg B.V.",
-  "De Kroon Zorginstelling B.V.",
-  "Aventura B.V.",
-  "Labyrint Zorg B.V."
+  {
+    "name": "Thuiszorg Anahid B.V.",
+    "link": "https://pointer.kro-ncrv.nl/artikelen/op-deze-manier-vind-je-zorginstellingen-die-megawinsten-maken",
+    "gif": "thuiszorg-anahid-bv.gif"
+  },
+  {
+    "name": "Thuiszorg Naborgh B.V.",
+    "link": "https://pointer.kro-ncrv.nl/artikelen/op-deze-manier-vind-je-zorginstellingen-die-megawinsten-maken",
+    "gif": "thuiszorg-anahid-bv.gif"
+  },
+  {
+    "name": "De Kroon Zorginstelling B.V.",
+    "link": "https://pointer.kro-ncrv.nl/artikelen/op-deze-manier-vind-je-zorginstellingen-die-megawinsten-maken",
+    "gif": "thuiszorg-anahid-bv.gif"
+  },
+  {
+    "name": "Altenastaete Thuiszorg B.V.",
+    "link": "https://pointer.kro-ncrv.nl/artikelen/op-deze-manier-vind-je-zorginstellingen-die-megawinsten-maken",
+    "gif": "thuiszorg-anahid-bv.gif"
+  },
+  {
+    "name": "Aventura B.V.",
+    "link": "https://pointer.kro-ncrv.nl/artikelen/op-deze-manier-vind-je-zorginstellingen-die-megawinsten-maken",
+    "gif": "thuiszorg-anahid-bv.gif"
+  },
+  {
+    "name": "Labyrint Zorg B.V.",
+    "link": "https://pointer.kro-ncrv.nl/artikelen/op-deze-manier-vind-je-zorginstellingen-die-megawinsten-maken",
+    "gif": "thuiszorg-anahid-bv.gif"
+  }
 ]

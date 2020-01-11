@@ -1,6 +1,7 @@
 <template>
   <div class="graph-container">
     <h1>Visualisatie</h1>
+    {{ test }}
     <div class="tooltip"></div>
   </div>
 </template>
@@ -18,7 +19,8 @@ export default {
       colorScale: {
         domain: [-100, -20, 0, 20, 100],
         range: ["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]
-      }
+      },
+      test: ""
     };
   },
   watch: {
@@ -34,6 +36,17 @@ export default {
     }
   },
   methods: {
+    isZorgcowboy(subject) {
+      return (
+        this.zorgCowboys.filter(cowboy => cowboy.name === subject.bedrijfsnaam)
+          .length > 0
+      );
+    },
+    getCowboyData(subject) {
+      return this.zorgCowboys.filter(
+        cowboy => cowboy.name === subject.bedrijfsnaam
+      )[0];
+    },
     async renderDataGroups(values) {
       let graph = d3
         .select(".graph-container")
@@ -78,40 +91,46 @@ export default {
           .style("z-index", "-1");
       }
 
+      function goToPage(bla) {
+        window.location.href = bla;
+      }
+
       dataPoints
         .enter()
         .append("div")
         .merge(dataPoints)
         .attr("class", "dataPoint")
         .style("width", d => {
-          if (!this.zorgCowboys.includes(d.bedrijfsnaam)) {
+          if (!this.isZorgcowboy(d)) {
             return "40px";
           } else {
             return "70px";
           }
         })
         .style("height", d => {
-          if (!this.zorgCowboys.includes(d.bedrijfsnaam)) {
+          if (!this.isZorgcowboy(d)) {
             return "40px";
           } else {
             return "70px";
           }
         })
         .style("background", d => {
-          if (!this.zorgCowboys.includes(d.bedrijfsnaam)) {
+          if (!this.isZorgcowboy(d)) {
             return colorScale(d.perc_winst);
           } else {
-            let imgUrl =
-              d.bedrijfsnaam
-                .replace(/\s+/g, "-")
-                .toLowerCase()
-                .replace(/\./g, "") + ".gif";
+            let imgUrl = this.getCowboyData(d).gif;
             return `center / contain no-repeat url("images/${imgUrl}")`;
           }
         })
         .attr("data-name", d => {
           return d.bedrijfsnaam.replace(/\s+/g, "-").toLowerCase();
         })
+        .on("click", d => {
+          if (this.isZorgcowboy(d)) {
+            goToPage(this.getCowboyData(d).link);
+          }
+        })
+        .on("mouseover", handleMouseOver)
         .on("mouseover", handleMouseOver)
         .on("mouseout", handleMouseOut)
         .transition()
@@ -160,9 +179,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--textcolor);
-  background-color: var(--blue-light);
+  color: var(--purple-light);
+  background-color: var(--purple);
   position: absolute;
+  padding: 0.5em;
   text-align: center;
   opacity: 0;
 }
