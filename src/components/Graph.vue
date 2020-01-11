@@ -10,22 +10,26 @@ import * as d3 from "d3";
 
 export default {
   props: {
-    revenueData: Array
+    revenueData: Array,
+    zorgCowboys: Array
   },
   data: function() {
     return {
       colorScale: {
         domain: [-100, -20, 0, 20, 100],
         range: ["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]
-      },
-      tooltipInfo: {}
+      }
     };
   },
   watch: {
     async revenueData(d) {
-      await this.renderDataGroups(d).then(graph => this.renderDataPoints(graph));
+      await this.renderDataGroups(d).then(graph =>
+        this.renderDataPoints(graph)
+      );
       this.renderLabels();
-      await this.renderDataGroups(d).then(graph => this.renderDataPoints(graph));
+      await this.renderDataGroups(d).then(graph =>
+        this.renderDataPoints(graph)
+      );
       this.renderLabels();
     }
   },
@@ -79,8 +83,31 @@ export default {
         .append("div")
         .merge(dataPoints)
         .attr("class", "dataPoint")
-        .style("background-color", d => {
-          return colorScale(d.perc_winst);
+        .style("width", d => {
+          if (!this.zorgCowboys.includes(d.bedrijfsnaam)) {
+            return "40px";
+          } else {
+            return "70px";
+          }
+        })
+        .style("height", d => {
+          if (!this.zorgCowboys.includes(d.bedrijfsnaam)) {
+            return "40px";
+          } else {
+            return "70px";
+          }
+        })
+        .style("background", d => {
+          if (!this.zorgCowboys.includes(d.bedrijfsnaam)) {
+            return colorScale(d.perc_winst);
+          } else {
+            let imgUrl =
+              d.bedrijfsnaam
+                .replace(/\s+/g, "-")
+                .toLowerCase()
+                .replace(/\./g, "") + ".gif";
+            return `center / contain no-repeat url("images/${imgUrl}")`;
+          }
         })
         .attr("data-name", d => {
           return d.bedrijfsnaam.replace(/\s+/g, "-").toLowerCase();
@@ -151,8 +178,6 @@ export default {
 }
 
 .dataPoint {
-  width: 40px;
-  height: 40px;
   border-radius: 100%;
   margin: 0.2em;
   opacity: 0;

@@ -7,7 +7,11 @@
       :rawData="rawData"
       @selection-changed="dataToShow = $event"
     />
-    <Graph class="graph" :revenueData="dataToShow"></Graph>
+    <Graph
+      class="graph"
+      :revenueData="dataToShow"
+      :zorgCowboys="zorgCowboys"
+    ></Graph>
   </div>
 </template>
 
@@ -29,6 +33,7 @@ export default {
   data() {
     return {
       rawData: [],
+      zorgCowboys: [],
       dataToShow: []
     };
   },
@@ -37,7 +42,8 @@ export default {
   },
   methods: {
     async fetchData() {
-      this.rawData = await d3.json("./rawData.json");
+      this.zorgCowboys = await d3.json("./zorgcowboys.json");
+      this.rawData = await d3.json("./rawdata.json");
     }
   }
 };
