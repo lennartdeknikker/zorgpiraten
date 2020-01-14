@@ -366,8 +366,12 @@ input[type="radio"]:checked + .label-text {
   width: 2em;
   height: 6em;
   position: relative;
-  top: 50%;
+  top: calc(50% - 3em);
   font-size: 1.2em;
+}
+
+fieldset {
+  margin-block-end: 2em;
 }
 
 .button-show-filters:focus {
