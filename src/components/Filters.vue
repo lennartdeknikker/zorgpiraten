@@ -113,7 +113,7 @@
       </fieldset>
     </form>
     <button class="button-show-filters" @click="showFilters = !showFilters">
-      FILTERS
+      <i class="fas fa-filter"></i>
     </button>
   </div>
 </template>
@@ -363,12 +363,15 @@ input[type="radio"]:checked + .label-text {
   padding: 0.5em;
   transition: transform 0.3s ease;
   background-color: #c9473d;
-  width: 6em;
-  height: 2em;
+  width: 2em;
+  height: 6em;
   position: relative;
   top: 50%;
-  transform: rotate(270deg);
-  transform-origin: top left;
+  font-size: 1.2em;
+}
+
+.button-show-filters:focus {
+  outline: none;
 }
 
 .hide {

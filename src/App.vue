@@ -2,7 +2,9 @@
   <div id="app">
     <div class="header">
       <Logo class="logo-header" />
-      <h1 class="header-title">#ZORGCOWBOYS</h1>
+      <h1 class="header-title">
+        #ZORGCOWBOYS
+      </h1>
     </div>
     <Introduction class="introduction" />
     <Filters
