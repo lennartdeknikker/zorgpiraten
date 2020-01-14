@@ -362,19 +362,22 @@ input[type="radio"]:checked + .label-text {
 }
 
 .button-show-filters {
-  position: relative;
-  background-color: transparent;
   color: white;
   border: none;
   font-weight: bold;
   cursor: pointer;
-  padding: 0;
+  padding: 0.5em;
   margin: 1em;
+  transition: transform 0.3s ease;
+  background-color: #c9473d;
+  width: 6em;
 }
 
 .show {
-  transform: rotate(270deg) translate(-0.5em, -2em);
+  transform: rotate(-90deg) translate(-0.5em, -2em);
   transform-origin: top right;
+  position: fixed;
+  left: -5em;
 }
 
 /* input:checked .label-text {
