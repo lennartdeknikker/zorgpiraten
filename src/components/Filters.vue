@@ -1,111 +1,137 @@
 <template>
-    <div class="filters-container">
-      <h1>Filters</h1>
-      <div>
-        <form action="#" @submit.prevent="scroll">
-          <fieldset>
-            <label for="year">Kies een jaar:</label><br />
-            <input
-              v-model="selectedYear"
-              type="radio"
-              name="year"
-              value="2018"
-            />
-            2018<br />
-            <input
-              v-model="selectedYear"
-              type="radio"
-              name="year"
-              value="2017"
-            />
-            2017<br />
-            <input
-              v-model="selectedYear"
-              type="radio"
-              name="year"
-              value="2016"
-            />
-            2016<br />
-            <input
-              v-model="selectedYear"
-              type="radio"
-              name="year"
-              value="2015"
-            />
-            2015
-          </fieldset>
-          <fieldset>
-            <label for="category">Kies een categorie:</label><br />
-            <input
-              v-model="selectedCategory"
-              type="radio"
-              name="category"
-              value="alles"
-            />
-            Alle zorg<br />
-            <input
-              v-model="selectedCategory"
-              type="radio"
-              name="category"
-              value="geestelijkegezondheidszorg"
-            />
-            Geestelijke Gezondheidszorg<br />
-            <input
-              v-model="selectedCategory"
-              type="radio"
-              name="category"
-              value="gehandicaptenzorg"
-            />
-            Gehandicaptenzorg<br />
-            <input
-              v-model="selectedCategory"
-              type="radio"
-              name="category"
-              value="thuiszorg"
-            />
-            Thuiszorg
-          </fieldset>
-          <fieldset>
-            <label for="search">Zoek een zorginstelling: </label><br />
-            <input v-model="searchText" type="text" name="search" />
-            <button type="submit">zoek</button>
-            <p v-if="matches.length > 1">
-              {{ matches.length }} resultaten gevonden.
-            </p>
-            <p v-if="matches.length === 1"></p>
-            <p v-if="matches.length === 1">
-              {{ matches.length }} resultaat gevonden.
-            </p>
-            <div v-if="matches.length < 10">
-              <ul
-                class="search-result-list"
-                v-for="match of matches"
-                :key="match"
-              >
-                <li
-                  class="search-result"
-                  @click="
-                    match.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center'
-                    })
-                  "
-                >
-                  {{ match.getAttribute("data-name") }}
-                </li>
-              </ul>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-    </div>
+  <div class="filters-container">
+    <button
+      class="button-show-filters"
+      @click="showFilters = !showFilters"
+      :class="{ show: !showFilters }"
+    >
+      FILTERS
+    </button>
+    <form
+      action="#"
+      @submit.prevent="scroll"
+      class="form-filters"
+      v-if="showFilters"
+    >
+      <fieldset class="pick-year">
+        <legend class="fieldset-title">Jaartal</legend>
+        <input
+          v-model="selectedYear"
+          type="radio"
+          name="year"
+          value="2018"
+          id="2018"
+        />
+        <label class="label-text" for="2018">2018</label>
+        <input
+          v-model="selectedYear"
+          type="radio"
+          name="year"
+          value="2017"
+          id="2017"
+        />
+        <label class="label-text" for="2017">2017</label>
+        <input
+          v-model="selectedYear"
+          type="radio"
+          name="year"
+          value="2016"
+          id="2016"
+        />
+        <label class="label-text" for="2016">2016</label>
+        <input
+          v-model="selectedYear"
+          type="radio"
+          name="year"
+          value="2015"
+          id="2015"
+        />
+        <label class="label-text" for="2015">2015</label>
+      </fieldset>
+      <fieldset class="pick-category">
+        <legend class="fieldset-title">Soort zorg</legend>
+        <input
+          v-model="selectedCategory"
+          type="radio"
+          name="category"
+          value="alles"
+          id="all"
+        />
+        <label class="label-text" for="all">Alle zorg</label>
+        <input
+          v-model="selectedCategory"
+          type="radio"
+          name="category"
+          value="geestelijkegezondheidszorg"
+          id="geestelijk"
+        />
+        <label class="label-text" for="geestelijk"
+          >Geestelijke Gezondheidszorg</label
+        >
+        <input
+          v-model="selectedCategory"
+          type="radio"
+          name="category"
+          value="gehandicaptenzorg"
+          id="handicap"
+        />
+        <label class="label-text" for="handicap">Gehandicaptenzorg</label>
+        <input
+          v-model="selectedCategory"
+          type="radio"
+          name="category"
+          value="thuiszorg"
+          id="thuiszorg"
+        />
+        <label class="label-text" for="thuiszorg">Thuiszorg</label>
+      </fieldset>
+      <fieldset class="search-company">
+        <div class="search-bar">
+          <svg aria-hidden="true" class="icon-search" viewBox="-8 -1 35 18">
+            <path
+              d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"
+            ></path>
+          </svg>
+          <input
+            v-model="searchText"
+            type="text"
+            name="search"
+            class="search-input"
+            placeholder="zoek naar zorginstellingen"
+          />
+        </div>
+        <p v-if="matches.length > 1">
+          {{ matches.length }} resultaten gevonden.
+        </p>
+        <p v-if="matches.length === 1"></p>
+        <p v-if="matches.length === 1">
+          {{ matches.length }} resultaat gevonden.
+        </p>
+        <div v-if="matches.length < 10">
+          <ul class="search-result-list" v-for="match of matches" :key="match">
+            <li
+              class="search-result"
+              @click="
+                match.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                })
+              "
+            >
+              {{ match.getAttribute("data-name") }}
+            </li>
+          </ul>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 </template>
 
 <script>
 import * as d3 from "d3";
 export default {
   components: {},
-  props: ['rawData'],
+  props: ["rawData"],
   data() {
     return {
       selectedYear: "2018",
@@ -115,7 +141,8 @@ export default {
       nestedData: [],
       dataToShow: [],
       searchText: "",
-      matches: []
+      matches: [],
+      showFilters: false
     };
   },
   mounted() {
@@ -224,27 +251,143 @@ export default {
 
 <style>
 .filters-container {
-  width: 100%;
-  height: 100%;
+  height: calc(100vh - 4em);
+  position: fixed;
+  top: 4em;
+  flex-direction: column;
+  background-color: #c9473d;
+  color: var(--grey);
+}
+
+.form-filters {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  height: 100%;
+  width: 25em;
+}
+
+fieldset {
+  border: 0;
 }
 
 .highlight {
-  border: 10px solid var(--purple);
+  border: 10px solid var(--purple-light);
   width: 20px;
   height: 20px;
 }
 
 .search-result {
   cursor: pointer;
-  color: var(--purple);
+  color: var(--purple-light);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .search-result-list {
   list-style-type: none;
   text-align: left;
 }
+
+.search-company {
+  margin: 0;
+  border-style: none;
+  width: 100%;
+}
+
+.search-company input {
+  margin: 1em;
+}
+
+.fieldset-title {
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+/* filter buttons */
+.label-text {
+  font-weight: 800;
+  font-size: 0.9em;
+  background-color: #dfdfdf;
+  color: #626972;
+  padding: 0.5em;
+  margin: 0.3em;
+  margin-top: 0.5em;
+  display: inline-flex;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + .label-text {
+  background-color: var(--textcolor);
+  color: #f2f2f2;
+  cursor: default;
+}
+
+/* search bar */
+.search-bar {
+  border: 2px solid var(--textcolor);
+  background-color: var(--grey-light);
+  width: 60%;
+  max-width: 20em;
+  margin: auto;
+  margin-top: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0.3em;
+}
+
+.icon-search {
+  fill: darkgrey;
+  width: 10%;
+  height: 100%;
+  min-width: 2rem;
+  margin: auto;
+}
+
+.search-input {
+  color: var(--purple);
+  font-family: var(--font-family-tenso);
+  background-color: transparent;
+  border: none;
+  width: 90%;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.button-show-filters {
+  position: relative;
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  margin: 1em;
+}
+
+.show {
+  transform: rotate(270deg) translate(-0.5em, -2em);
+  transform-origin: top right;
+}
+
+/* input:checked .label-text {
+background-color: yellowgreen;
+} */
+
+/* width: 10em;
+display: flex;
+justify-content: right;
+float: left;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px; */
 </style>

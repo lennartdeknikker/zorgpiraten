@@ -43,12 +43,23 @@
 
 <style scoped>
 .logo-container {
-  width: 7rem;
+  width: 6.5em;
   align-self: flex-start;
-  margin: 0.5rem;
+  margin: 0.5em;
+  margin-top: 0.9em;
+  z-index: 1;
+  position: fixed;
+}
+
+@media (max-width: 27em) {
+  .logo-container {
+    width: 5em;
+    margin-top: 1.2em;
+  }
 }
 
 .logo-path {
   fill: #1d2939;
 }
 </style>
+

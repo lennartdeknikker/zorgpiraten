@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <Logo class="logo-header" />
+    <div class="header">
+      <Logo class="logo-header" />
+      <h1 class="header-title">#ZORGCOWBOYS</h1>
+    </div>
     <Introduction class="introduction" />
     <Filters
       class="filters"
@@ -94,13 +97,23 @@ body {
   width: 100%;
   display: grid;
   grid-template-areas:
-    "header"
     "introduction"
-    "filters"
     "graph";
-  grid-template-rows: 10vh 90vh 100vh auto;
+  grid-template-rows: 100vh auto;
   flex-direction: column;
   align-items: center;
+}
+
+.header {
+  height: 4em;
+  width: 100%;
+  background-color: var(--red);
+  position: fixed;
+  z-index: 2;
+}
+.header-title {
+  font-size: 1.5em;
+  color: var(--grey-light);
 }
 
 .introduction {
@@ -113,9 +126,5 @@ body {
 
 .graph {
   grid-area: graph;
-}
-
-.logo-header {
-  grid-area: header;
 }
 </style>

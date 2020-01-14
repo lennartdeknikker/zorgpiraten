@@ -19,13 +19,10 @@ export default {
 
 <style>
 .introduction-container {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 15%;
-  box-sizing: border-box;
 }
 
 .textbox {

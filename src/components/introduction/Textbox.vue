@@ -1,6 +1,5 @@
 <template>
   <div id="textbox" class="textbox-container">
-    <h1 class="title"><span class="title-hashtag">#</span>ZorgCowboys</h1>
     <div class="text-container">
       <h2 class="first-header">De winstlijn</h2>
       <p class="normal-text">
@@ -32,19 +31,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.title {
-  font-family: var(--font-family-tenso);
-  font-size: 2rem;
-  font-weight: 100;
-  margin: 0;
-  position: relative;
-  top: .5rem;
-}
-
-.title-hashtag {
-  color: var(--red);
 }
 
 .text-container {
