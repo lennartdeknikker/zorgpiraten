@@ -156,6 +156,7 @@ export default {
 
 <style>
 .graph-container {
+  padding-top: 4em;
   width: 100%;
   display: flex;
   flex-direction: column;
