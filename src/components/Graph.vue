@@ -1,7 +1,6 @@
 <template>
   <div class="graph-container">
     <h1>Visualisatie</h1>
-    {{ test }}
     <div class="tooltip"></div>
   </div>
 </template>
@@ -19,8 +18,7 @@ export default {
       colorScale: {
         domain: [-100, -20, 0, 20, 100],
         range: ["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]
-      },
-      test: ""
+      }
     };
   },
   watch: {
@@ -28,7 +26,6 @@ export default {
       await this.renderDataGroups(d).then(graph =>
         this.renderDataPoints(graph)
       );
-      this.renderLabels();
       await this.renderDataGroups(d).then(graph =>
         this.renderDataPoints(graph)
       );
@@ -36,17 +33,6 @@ export default {
     }
   },
   methods: {
-    isZorgcowboy(subject) {
-      return (
-        this.zorgCowboys.filter(cowboy => cowboy.name === subject.bedrijfsnaam)
-          .length > 0
-      );
-    },
-    getCowboyData(subject) {
-      return this.zorgCowboys.filter(
-        cowboy => cowboy.name === subject.bedrijfsnaam
-      )[0];
-    },
     async renderDataGroups(values) {
       let graph = d3
         .select(".graph-container")
@@ -61,6 +47,17 @@ export default {
 
       graph.exit().remove();
       return graph;
+    },
+    getCowboyData(subject) {
+      return this.zorgCowboys.filter(
+        cowboy => cowboy.name === subject.bedrijfsnaam
+      )[0];
+    },
+    isZorgcowboy(subject) {
+      return (
+        this.zorgCowboys.filter(cowboy => cowboy.name === subject.bedrijfsnaam)
+          .length > 0
+      );
     },
     renderDataPoints(graph) {
       let dataPoints = graph.selectAll(".dataPoint").data(d => d.values);
@@ -91,8 +88,8 @@ export default {
           .style("z-index", "-1");
       }
 
-      function goToPage(bla) {
-        window.location.href = bla;
+      function handleClick(target) {
+        window.location.href = target;
       }
 
       dataPoints
@@ -118,21 +115,21 @@ export default {
           if (!this.isZorgcowboy(d)) {
             return colorScale(d.perc_winst);
           } else {
-            let imgUrl = this.getCowboyData(d).gif;
-            return `center / contain no-repeat url("images/${imgUrl}")`;
+            return `center / contain no-repeat url("images/${
+              this.getCowboyData(d).gif
+            }")`;
           }
         })
         .attr("data-name", d => {
           return d.bedrijfsnaam.replace(/\s+/g, "-").toLowerCase();
         })
-        .on("click", d => {
-          if (this.isZorgcowboy(d)) {
-            goToPage(this.getCowboyData(d).link);
-          }
-        })
-        .on("mouseover", handleMouseOver)
         .on("mouseover", handleMouseOver)
         .on("mouseout", handleMouseOut)
+        .on("click", d => {
+          if (this.isZorgcowboy(d)) {
+            handleClick(this.getCowboyData(d).link);
+          }
+        })
         .transition()
         .duration(800)
         .style("opacity", "1");
