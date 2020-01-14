@@ -1,18 +1,6 @@
 <template>
-  <div class="filters-container">
-    <button
-      class="button-show-filters"
-      @click="showFilters = !showFilters"
-      :class="{ show: !showFilters }"
-    >
-      FILTERS
-    </button>
-    <form
-      action="#"
-      @submit.prevent="scroll"
-      class="form-filters"
-      v-if="showFilters"
-    >
+  <div class="filters-container" :class="{ hide: showFilters }">
+    <form action="#" @submit.prevent="scroll" class="form-filters">
       <fieldset class="pick-year">
         <legend class="fieldset-title">Jaartal</legend>
         <input
@@ -124,6 +112,9 @@
         </div>
       </fieldset>
     </form>
+    <button class="button-show-filters" @click="showFilters = !showFilters">
+      FILTERS
+    </button>
   </div>
 </template>
 
@@ -251,20 +242,23 @@ export default {
 
 <style>
 .filters-container {
+  display: flex;
   height: calc(100vh - 4em);
+  flex-direction: row;
+  color: var(--grey);
   position: fixed;
   top: 4em;
-  flex-direction: column;
-  background-color: #c9473d;
-  color: var(--grey);
+  transition: transform 0.5s ease;
 }
 
 .form-filters {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #c9473d;
   height: 100%;
   width: 25em;
+  overflow: hidden;
 }
 
 fieldset {
@@ -367,17 +361,18 @@ input[type="radio"]:checked + .label-text {
   font-weight: bold;
   cursor: pointer;
   padding: 0.5em;
-  margin: 1em;
   transition: transform 0.3s ease;
   background-color: #c9473d;
   width: 6em;
+  height: 2em;
+  position: relative;
+  top: 50%;
+  transform: rotate(270deg);
+  transform-origin: top left;
 }
 
-.show {
-  transform: rotate(-90deg) translate(-0.5em, -2em);
-  transform-origin: top right;
-  position: fixed;
-  left: -5em;
+.hide {
+  transform: translateX(-25em);
 }
 
 /* input:checked .label-text {

@@ -1,8 +1,10 @@
 <template>
-  <div class="introduction-container">
-    <Textbox class="textbox" />
-    <Buttons />
-  </div>
+  <transition-group tag="div" class="introduction-container" name="fade">
+    <div v-if="showZeroState" key="introduction" class="introduction-elements">
+      <Textbox class="textbox" />
+      <Buttons @start-button-clicked="showZeroState = !showZeroState" />
+    </div>
+  </transition-group>
 </template>
 
 <script>
@@ -13,16 +15,37 @@ export default {
   components: {
     Textbox,
     Buttons
+  },
+  data() {
+    return {
+      showZeroState: true
+    };
   }
 };
 </script>
 
 <style>
 .introduction-container {
+  position: fixed;
+  z-index: 1;
+}
+
+.introduction-elements {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: var(--textcolor);
+  background-blend-mode: multiply;
+  width: 100vw;
+  height: 100vh;
+}
+
+.fade-leave-active {
+  transition: opacity 0.3s linear;
+}
+.fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 
 .textbox {

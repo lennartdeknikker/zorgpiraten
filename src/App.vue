@@ -95,11 +95,6 @@ body {
   text-align: center;
   color: #2c3e50;
   width: 100%;
-  display: grid;
-  grid-template-areas:
-    "introduction"
-    "graph";
-  grid-template-rows: 100vh auto;
   flex-direction: column;
   align-items: center;
 }
@@ -114,17 +109,5 @@ body {
 .header-title {
   font-size: 1.5em;
   color: var(--grey-light);
-}
-
-.introduction {
-  grid-area: introduction;
-}
-
-.filters {
-  grid-area: filters;
-}
-
-.graph {
-  grid-area: graph;
 }
 </style>

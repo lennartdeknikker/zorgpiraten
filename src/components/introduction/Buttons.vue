@@ -1,6 +1,12 @@
 <template>
   <div class="input-elements-container">
-    <button class="start-button" @click="scrollTo('.graph-container')">
+    <button
+      class="start-button"
+      @click="
+        scrollTo('.graph-container');
+        $emit('start-button-clicked');
+      "
+    >
       START
     </button>
   </div>
@@ -10,7 +16,7 @@
 export default {
   methods: {
     scrollTo: function(selector) {
-      document.querySelector(selector).scrollIntoView({ behavior: "smooth" });
+      document.querySelector(selector).scrollIntoView();
     }
   }
 };
@@ -34,5 +40,10 @@ export default {
   font-weight: 700;
   font-size: 1.3em;
   font-family: var(--font-family-tenso);
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 </style>
