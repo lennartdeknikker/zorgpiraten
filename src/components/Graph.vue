@@ -70,18 +70,13 @@ export default {
       const tooltip = d3.select(".tooltip");
 
       function handleMouseOver(d, object, isCowboy) {
-        let xco = d3.event.pageX + 30;
-        if (d3.event.pageX > window.innerWidth - 80) {
-          xco = d3.event.pageX - 30;
-        }
-
         d3.select(object)
           .style("transform", `scale(${isCowboy ? 4 : 1.5})`)
           .style("z-index", `${isCowboy ? 1 : 0}`);
         tooltip
-          .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%")
-          .style("left", xco + "px")
-          .style("top", d3.event.pageY - 30 + "px")
+          .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%" + d3.event.pageX)
+          .style("left", d3.event.pageX - 65 + "px")
+          .style("top", d3.event.pageY - 150 + "px")
           .style("z-index", "2")
           .transition()
           .duration(500)
