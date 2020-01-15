@@ -252,6 +252,7 @@ export default {
   position: fixed;
   top: 4em;
   transition: transform 0.5s ease;
+  z-index: 3;
 }
 
 .form-filters {

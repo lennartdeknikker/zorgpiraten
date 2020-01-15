@@ -70,12 +70,14 @@ export default {
       const tooltip = d3.select(".tooltip");
 
       function handleMouseOver(d, object, isCowboy) {
-        d3.select(object).style("transform", `scale(${isCowboy ? 4 : 1.5})`);
+        d3.select(object)
+          .style("transform", `scale(${isCowboy ? 4 : 1.5})`)
+          .style("z-index", `${isCowboy ? 1 : 0}`);
         tooltip
           .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%")
           .style("left", d3.event.pageX + 30 + "px")
-          .style("top", d3.event.pageY - 28 + "px")
-          .style("z-index", "1")
+          .style("top", d3.event.pageY - 30 + "px")
+          .style("z-index", "2")
           .transition()
           .duration(500)
           .style("opacity", "1");
@@ -203,5 +205,7 @@ export default {
   opacity: 0;
   transition-property: transform, margin;
   transition-duration: 0.3s, 0.5s;
+  position: relative;
+  z-index: 0;
 }
 </style>
