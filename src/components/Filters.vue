@@ -1,6 +1,9 @@
 <template>
   <div class="filters-container" :class="{ hide: showFilters }">
     <form action="#" @submit.prevent="scroll" class="form-filters">
+      <button class="close-button-mobile" @click="showFilters = true">
+        <i class="fas fa-times"></i>
+      </button>
       <fieldset class="pick-year">
         <legend class="fieldset-title">Jaartal</legend>
         <input
@@ -378,21 +381,30 @@ fieldset {
   outline: none;
 }
 
+.close-button-mobile {
+  position: absolute;
+  top: 1em;
+  right: 4em;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
 .hide {
   transform: translateX(-25em);
 }
 
-/* input:checked .label-text {
-background-color: yellowgreen;
-} */
-
-/* width: 10em;
-display: flex;
-justify-content: right;
-float: left;
-color: #f2f2f2;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-font-size: 17px; */
+@media (max-width: 700px) {
+  .form-filters {
+    width: 100vw;
+  }
+  .hide {
+    transform: translateX(-100vw);
+  }
+  .close-button-mobile {
+    display: block;
+  }
+}
 </style>
