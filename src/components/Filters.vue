@@ -106,7 +106,8 @@
                 match.scrollIntoView({
                   behavior: 'smooth',
                   block: 'center'
-                })
+                });
+                showFilters = true;
               "
             >
               {{ match.getAttribute("data-name") }}

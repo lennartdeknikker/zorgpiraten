@@ -93,7 +93,7 @@ export default {
       }
 
       function handleClick(target) {
-        window.location.href = target;
+        if (!target) window.location.href = target;
       }
 
       dataPoints
@@ -201,7 +201,7 @@ export default {
 
 .dataPoint {
   border-radius: 100%;
-  margin: 0.2em;
+  margin: 0.4em;
   opacity: 0;
   transition-property: transform, margin;
   transition-duration: 0.3s, 0.5s;
