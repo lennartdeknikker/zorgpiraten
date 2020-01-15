@@ -136,7 +136,7 @@ export default {
       dataToShow: [],
       searchText: "",
       matches: [],
-      showFilters: false
+      showFilters: true
     };
   },
   mounted() {

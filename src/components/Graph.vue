@@ -69,7 +69,8 @@ export default {
 
       const tooltip = d3.select(".tooltip");
 
-      function handleMouseOver(d) {
+      function handleMouseOver(d, object, isCowboy) {
+        d3.select(object).style("transform", `scale(${isCowboy ? 4 : 1.5})`);
         tooltip
           .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%")
           .style("left", d3.event.pageX + 30 + "px")
@@ -81,6 +82,7 @@ export default {
       }
 
       function handleMouseOut() {
+        d3.select(this).style("transform", "scale(1)");
         tooltip
           .transition()
           .duration(500)
@@ -96,20 +98,14 @@ export default {
         .enter()
         .append("div")
         .merge(dataPoints)
-        .attr("class", "dataPoint")
+        .attr("class", d => {
+          return this.isZorgcowboy(d) ? "dataPoint zorg-cowboy" : "dataPoint";
+        })
         .style("width", d => {
-          if (!this.isZorgcowboy(d)) {
-            return "40px";
-          } else {
-            return "70px";
-          }
+          return this.isZorgcowboy(d) ? "60px" : "30px";
         })
         .style("height", d => {
-          if (!this.isZorgcowboy(d)) {
-            return "40px";
-          } else {
-            return "70px";
-          }
+          return this.isZorgcowboy(d) ? "60px" : "30px";
         })
         .style("background", d => {
           if (!this.isZorgcowboy(d)) {
@@ -123,7 +119,13 @@ export default {
         .attr("data-name", d => {
           return d.bedrijfsnaam.replace(/\s+/g, "-").toLowerCase();
         })
-        .on("mouseover", handleMouseOver)
+        .on("mouseover", function(d) {
+          if (d3.select(this).classed("zorg-cowboy")) {
+            handleMouseOver(d, this, true);
+          } else {
+            handleMouseOver(d, this, false);
+          }
+        })
         .on("mouseout", handleMouseOut)
         .on("click", d => {
           if (this.isZorgcowboy(d)) {
@@ -201,10 +203,5 @@ export default {
   opacity: 0;
   transition-property: transform, margin;
   transition-duration: 0.3s, 0.5s;
-}
-
-.dataPoint:hover {
-  transform: scale(1.5);
-  margin: 0.7em;
 }
 </style>

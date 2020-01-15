@@ -35,7 +35,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--textcolor);
+  background-color: #1d2939de;
   background-blend-mode: multiply;
   width: 100vw;
   height: 100vh;
