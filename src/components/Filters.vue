@@ -1,7 +1,7 @@
 <template>
   <div class="filters-container" :class="{ hide: showFilters }">
     <form action="#" @submit.prevent="scroll" class="form-filters">
-      <button class="close-button-mobile" @click="showFilters = true">
+      <button class="close-button-mobile" @click.prevent="showFilters = true">
         <i class="fas fa-times"></i>
       </button>
       <fieldset class="pick-year">
