@@ -35,7 +35,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--textcolor);
+  background-color: var(--purple);
   background-blend-mode: multiply;
   width: 100vw;
   height: 100vh;
@@ -50,8 +50,5 @@ export default {
 
 .textbox {
   margin: 0 0 2.5rem;
-}
-
-.x-button {
 }
 </style>

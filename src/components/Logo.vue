@@ -44,15 +44,25 @@
 <style scoped>
 .logo-container {
   width: 6.5em;
-  align-self: flex-start;
-  margin: 0.5em;
-  margin-top: 0.9em;
   z-index: 1;
   position: fixed;
 }
 
+.logo-header {
+  background-color: var(--purple-light);
+    margin-left: -50.1vw;
+    margin-bottom: 0;
+    padding-left: 50vw;
+    padding-bottom: 0;
+    padding-right: 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 48px;
+}
+
 @media (max-width: 27em) {
-  .logo-container {
+  .logo-header {
     width: 5em;
     margin-top: 1.2em;
   }

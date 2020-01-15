@@ -45,7 +45,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  box-shadow: -6px 6px red;
+  box-shadow: -6px 6px #E5614E;
   text-align: left;
   padding: 1rem;
   box-sizing: border-box;

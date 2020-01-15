@@ -2,6 +2,7 @@
   <div id="app">
     <div class="header">
       <Logo class="logo-header" />
+      <img src="images/asset1.png" class="triangle"/>
       <h1 class="header-title">
         #ZORGCOWBOYS
       </h1>
@@ -68,6 +69,7 @@ export default {
   --blue-light: #1beaae;
   --purple: #6b38e8;
   --textcolor: #1d2939;
+  --pointerblue: #1F2938;
   /* font variables */
   --font-family-tenso: "Tenso", Helvetica, Arial, "Nimbus Sans L", sans-serif;
   --font-family-zilla: "Zilla Slab", Georgia, "Times New Roman", "DejaVu Serif",
@@ -102,14 +104,21 @@ body {
 }
 
 .header {
-  height: 4em;
+  height: 3em;
   width: 100%;
-  background-color: var(--red);
+  background-color: var(--pointerblue);
   position: fixed;
   z-index: 2;
-}
+  }
+
 .header-title {
   font-size: 1.5em;
   color: var(--grey-light);
+}
+
+.triangle {
+  width: 3em;
+  display: flex;
+  margin-left: 7.9em;
 }
 </style>
