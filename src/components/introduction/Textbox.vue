@@ -3,14 +3,19 @@
     <div class="text-container">
       <h2 class="first-header">De winstlijn</h2>
       <p class="normal-text">
-        Welkom bij de winstlijn van Pointer. Op deze webpagina hebben wij voor
-        jou interessante en opvallende data uit onze ZorgCowboys onderzoeken
-        uitgelicht.
+        Welkom bij de winstlijn van Pointer. 
+        Op deze pagina hebben wij interessante data uit onze 
+        #ZorgCowboys onderzoeken uitgelicht.
+        
       </p>
       <p class="normal-text">
-        Wil je liever zelf de sherriff uithangen? Dat kan! Voer simpelweg een
-        naam van een zorginstelling hieronder in en ga op zoek naar opvallende
-        cijfers binnen de zorgindustrie.
+        Wil je liever zelf de sherriff uithangen? Dat kan! 
+        Ga op zoek naar zorginstellingen in het filter menu. 
+      </p>
+
+      <p class="normal-text">
+        Iets opvallends gevonden? Stuur een tip via de knop
+        bovenin de webpagina!
       </p>
     </div>
     

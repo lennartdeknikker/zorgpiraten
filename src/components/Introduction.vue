@@ -51,4 +51,7 @@ export default {
 .textbox {
   margin: 0 0 2.5rem;
 }
+
+.x-button {
+}
 </style>
