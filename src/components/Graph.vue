@@ -76,7 +76,7 @@ export default {
         tooltip
           .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%" + d3.event.pageX)
           .style("left", d3.event.pageX - 65 + "px")
-          .style("top", d3.event.pageY - 150 + "px")
+          .style("top", d3.event.pageY + 40 + "px")
           .style("z-index", "2")
           .transition()
           .duration(500)

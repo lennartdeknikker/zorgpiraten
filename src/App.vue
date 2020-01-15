@@ -106,7 +106,7 @@ body {
   width: 100%;
   background-color: var(--red);
   position: fixed;
-  z-index: 2;
+  z-index: 5;
 }
 .header-title {
   font-size: 1.5em;
