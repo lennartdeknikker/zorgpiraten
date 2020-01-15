@@ -1,6 +1,22 @@
 <template>
   <div class="graph-container">
-    <h1>Visualisatie</h1>
+    <h2>
+      <span v-if="categoryToShow === 'alles'">
+        Alle zorginstellingen in {{ yearToShow }}
+      </span>
+      <span v-if="categoryToShow === 'geestelijkegezondheidszorg'">
+        Instellingen voor geestelijke gezondheidszorg in {{ yearToShow }}
+      </span>
+      <span
+        v-if="
+          categoryToShow !== 'alles' &&
+            categoryToShow !== 'geestelijkegezondheidszorg' &&
+            categoryToShow !== ''
+        "
+      >
+        Instellingen voor {{ categoryToShow }} in {{ yearToShow }}
+      </span>
+    </h2>
     <div class="tooltip"></div>
   </div>
 </template>
@@ -11,7 +27,9 @@ import * as d3 from "d3";
 export default {
   props: {
     revenueData: Array,
-    zorgCowboys: Array
+    zorgCowboys: Array,
+    yearToShow: String,
+    categoryToShow: String
   },
   data: function() {
     return {

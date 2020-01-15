@@ -154,9 +154,11 @@ export default {
     },
     selectedCategory: function() {
       this.processData();
+      this.$emit("category-changed", this.selectedCategory);
     },
     selectedYear: function() {
       this.processData();
+      this.$emit("year-changed", this.selectedYear);
     },
     searchText: function() {
       this.highlightMatches();
