@@ -239,6 +239,7 @@ export default {
       document
         .querySelector(`[data-name*=${this.TransformedSearchText}]`)
         .scrollIntoView({ behavior: "smooth" });
+      this.showFilters = true;
     }
   }
 };
