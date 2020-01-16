@@ -17,14 +17,19 @@
         Instellingen voor {{ categoryToShow }} in {{ yearToShow }}
       </span>
     </h2>
+    <Search />
     <div class="tooltip"></div>
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
+import Search from "./Search.vue";
 
 export default {
+  components: {
+    Search
+  },
   props: {
     revenueData: Array,
     zorgCowboys: Array,
