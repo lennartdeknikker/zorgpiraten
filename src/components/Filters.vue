@@ -76,45 +76,6 @@
         />
         <label class="label-text" for="thuiszorg">Thuiszorg</label>
       </fieldset>
-      <fieldset class="search-company">
-        <div class="search-bar">
-          <svg aria-hidden="true" class="icon-search" viewBox="-8 -1 35 18">
-            <path
-              d="M18 16.5l-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0z"
-            ></path>
-          </svg>
-          <input
-            v-model="searchText"
-            type="text"
-            name="search"
-            class="search-input"
-            placeholder="zoek naar zorginstellingen"
-          />
-        </div>
-        <p v-if="matches.length > 1">
-          {{ matches.length }} resultaten gevonden.
-        </p>
-        <p v-if="matches.length === 1"></p>
-        <p v-if="matches.length === 1">
-          {{ matches.length }} resultaat gevonden.
-        </p>
-        <div v-if="matches.length < 10">
-          <ul class="search-result-list" v-for="match of matches" :key="match">
-            <li
-              class="search-result"
-              @click="
-                match.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                });
-                showFilters = true;
-              "
-            >
-              {{ match.getAttribute("data-name") }}
-            </li>
-          </ul>
-        </div>
-      </fieldset>
     </form>
     <button class="button-show-filters" @click="showFilters = !showFilters">
       <i class="fas fa-filter"></i>
@@ -125,7 +86,6 @@
 <script>
 import * as d3 from "d3";
 export default {
-  components: {},
   props: ["rawData"],
   data() {
     return {
@@ -135,18 +95,11 @@ export default {
       dataForSelectedYear: [],
       nestedData: [],
       dataToShow: [],
-      searchText: "",
-      matches: [],
       showFilters: true
     };
   },
   mounted() {
     this.processData();
-  },
-  computed: {
-    TransformedSearchText: function() {
-      return this.searchText.toLowerCase().replace(/\s+/g, "-");
-    }
   },
   watch: {
     rawData: function() {
@@ -160,17 +113,12 @@ export default {
       this.processData();
       this.$emit("year-changed", this.selectedYear);
     },
-    searchText: function() {
-      this.highlightMatches();
-    },
     dataToShow: function() {
       this.$emit("selection-changed", this.dataToShow);
     }
   },
   methods: {
     processData() {
-      this.searchText = "";
-      this.matches = [];
       this.categorizeData();
       this.filterCategorizedDataByYear();
       this.nestDataByRevenueValues();
@@ -224,24 +172,6 @@ export default {
         return b.key - a.key;
       });
       this.dataToShow = dataToShow;
-    },
-    highlightMatches() {
-      let nodes = document.querySelectorAll(".highlight");
-      for (let node of nodes) {
-        node.classList.remove("highlight");
-      }
-      this.matches = document.querySelectorAll(
-        `[data-name*=${this.TransformedSearchText}]`
-      );
-      for (let node of this.matches) {
-        node.classList.add("highlight");
-      }
-    },
-    scroll() {
-      document
-        .querySelector(`[data-name*=${this.TransformedSearchText}]`)
-        .scrollIntoView({ behavior: "smooth" });
-      this.showFilters = true;
     }
   }
 };
@@ -286,21 +216,6 @@ fieldset {
   flex-wrap: wrap;
 }
 
-.search-result-list {
-  list-style-type: none;
-  text-align: left;
-}
-
-.search-company {
-  margin: 0;
-  border-style: none;
-  width: 100%;
-}
-
-.search-company input {
-  margin: 1em;
-}
-
 .fieldset-title {
   font-size: 1em;
   text-decoration: underline;
@@ -328,39 +243,6 @@ input[type="radio"]:checked + .label-text {
   background-color: var(--textcolor);
   color: #f2f2f2;
   cursor: default;
-}
-
-/* search bar */
-.search-bar {
-  border: 2px solid var(--textcolor);
-  background-color: var(--grey-light);
-  width: 60%;
-  max-width: 20em;
-  margin: auto;
-  margin-top: 0.5em;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 0.3em;
-}
-
-.icon-search {
-  fill: darkgrey;
-  width: 10%;
-  height: 100%;
-  min-width: 2rem;
-  margin: auto;
-}
-
-.search-input {
-  color: var(--purple);
-  font-family: var(--font-family-tenso);
-  background-color: transparent;
-  border: none;
-  width: 90%;
-}
-
-.search-input:focus {
-  outline: none;
 }
 
 .button-show-filters {
