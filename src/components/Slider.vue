@@ -9,6 +9,7 @@
       max="9"
       orient="vertical"
     />
+    <div class="alt-thumb"></div>
   </div>
 </template>
 
@@ -16,7 +17,7 @@
 export default {
   data() {
     return {
-      scrollHeight: 0
+      scrollHeight: 9
     };
   },
   watch: {
@@ -29,6 +30,10 @@ export default {
           behavior: "smooth",
           block: "center"
         });
+      document.querySelector(".alt-thumb").style = `top: ${-0.5 *
+        labelValueToShow *
+        10 +
+        45}%;`;
     }
   }
 };
@@ -45,12 +50,20 @@ export default {
   z-index: 10;
 }
 
+.alt-thumb {
+  width: 100%;
+  height: 5%;
+  background-color: red;
+  position: absolute;
+  top: 0;
+}
+
 input[type="range"] {
   height: 36px;
-  -webkit-appearance: none;
   width: 100%;
-  height: 11em;
-  transform: rotate(270deg);
+  height: 100%;
+  -webkit-appearance: slider-vertical;
+  writing-mode: bt-lr;
 }
 input[type="range"]:focus {
   outline: none;
@@ -75,6 +88,7 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: 0px;
+  opacity: 0;
 }
 input[type="range"]:focus::-webkit-slider-runnable-track {
   background: #50555c;
