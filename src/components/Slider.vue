@@ -41,7 +41,8 @@ export default {
 
 <style scoped>
 .slider-container {
-  width: 10em;
+  width: 5%;
+  max-width: 5em;
   height: 50em;
   background-color: aquamarine;
   position: fixed;
