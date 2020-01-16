@@ -50,7 +50,7 @@ git push origin issue-name
 ```
 Then push the branch and set the remote as upstream with
 ```
-git push --set-upstream origin create-search-component
+git push --set-upstream origin isse-name
 ```
 
 ### Push your changes
