@@ -175,6 +175,7 @@ export default {
       d3.selectAll(".data-group")
         .insert("p")
         .attr("class", "label")
+        .attr("data-value", d => "l" + d.key / 10)
         .html(d => d.key + " %");
     }
   }
