@@ -94,6 +94,7 @@ html {
   background-position: 0 0;
   background-size: 40px 40px;
   background-attachment: fixed;
+  scrollbar-width: none;
 }
 
 body {
