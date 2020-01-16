@@ -2,7 +2,7 @@
   <transition-group tag="div" class="introduction-container" name="fade">
     <div v-if="showZeroState" key="introduction" class="introduction-elements">
       <Textbox class="textbox" />
-      <Buttons @start-button-clicked="showZeroState = !showZeroState" />
+      <Buttons @x-button-clicked="showZeroState = !showZeroState" />
     </div>
   </transition-group>
 </template>
@@ -35,7 +35,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #1d2939de;
+  background-color: var(--purple);
   background-blend-mode: multiply;
   width: 100vw;
   height: 100vh;

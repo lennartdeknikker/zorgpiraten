@@ -1,13 +1,13 @@
 <template>
   <div class="input-elements-container">
     <button
-      class="start-button"
+      class="x-button"
       @click="
         scrollTo('.graph-container');
-        $emit('start-button-clicked');
+        $emit('x-button-clicked');
       "
     >
-      START
+      X
     </button>
   </div>
 </template>
@@ -31,10 +31,13 @@ export default {
   justify-content: center;
 }
 
-.start-button {
-  width: 10rem;
-  height: 2.2rem;
+.x-button {
+  width: 2rem;
+  border-radius: 2em;
+  height: 2rem;
   border: none;
+  margin-top: -19em;
+  margin-left: 11em;
   background-color: var(--red);
   color: var(--grey-light);
   font-weight: 700;
