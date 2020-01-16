@@ -1,6 +1,22 @@
 <template>
   <div class="graph-container">
-    <h1>Visualisatie</h1>
+    <h2>
+      <span v-if="categoryToShow === 'alles'">
+        Alle zorginstellingen in {{ yearToShow }}
+      </span>
+      <span v-if="categoryToShow === 'geestelijkegezondheidszorg'">
+        Instellingen voor geestelijke gezondheidszorg in {{ yearToShow }}
+      </span>
+      <span
+        v-if="
+          categoryToShow !== 'alles' &&
+            categoryToShow !== 'geestelijkegezondheidszorg' &&
+            categoryToShow !== ''
+        "
+      >
+        Instellingen voor {{ categoryToShow }} in {{ yearToShow }}
+      </span>
+    </h2>
     <div class="tooltip"></div>
   </div>
 </template>
@@ -11,7 +27,9 @@ import * as d3 from "d3";
 export default {
   props: {
     revenueData: Array,
-    zorgCowboys: Array
+    zorgCowboys: Array,
+    yearToShow: String,
+    categoryToShow: String
   },
   data: function() {
     return {
@@ -69,18 +87,22 @@ export default {
 
       const tooltip = d3.select(".tooltip");
 
-      function handleMouseOver(d) {
+      function handleMouseOver(d, object, isCowboy) {
+        d3.select(object)
+          .style("transform", `scale(${isCowboy ? 4 : 1.5})`)
+          .style("z-index", `${isCowboy ? 1 : 0}`);
         tooltip
-          .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%")
-          .style("left", d3.event.pageX + 30 + "px")
-          .style("top", d3.event.pageY - 28 + "px")
-          .style("z-index", "1")
+          .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%" + d3.event.pageX)
+          .style("left", d3.event.pageX - 65 + "px")
+          .style("top", d3.event.pageY + 40 + "px")
+          .style("z-index", "2")
           .transition()
           .duration(500)
           .style("opacity", "1");
       }
 
       function handleMouseOut() {
+        d3.select(this).style("transform", "scale(1)");
         tooltip
           .transition()
           .duration(500)
@@ -89,27 +111,21 @@ export default {
       }
 
       function handleClick(target) {
-        window.location.href = target;
+        if (!target) window.location.href = target;
       }
 
       dataPoints
         .enter()
         .append("div")
         .merge(dataPoints)
-        .attr("class", "dataPoint")
+        .attr("class", d => {
+          return this.isZorgcowboy(d) ? "dataPoint zorg-cowboy" : "dataPoint";
+        })
         .style("width", d => {
-          if (!this.isZorgcowboy(d)) {
-            return "40px";
-          } else {
-            return "70px";
-          }
+          return this.isZorgcowboy(d) ? "60px" : "30px";
         })
         .style("height", d => {
-          if (!this.isZorgcowboy(d)) {
-            return "40px";
-          } else {
-            return "70px";
-          }
+          return this.isZorgcowboy(d) ? "60px" : "30px";
         })
         .style("background", d => {
           if (!this.isZorgcowboy(d)) {
@@ -123,7 +139,13 @@ export default {
         .attr("data-name", d => {
           return d.bedrijfsnaam.replace(/\s+/g, "-").toLowerCase();
         })
-        .on("mouseover", handleMouseOver)
+        .on("mouseover", function(d) {
+          if (d3.select(this).classed("zorg-cowboy")) {
+            handleMouseOver(d, this, true);
+          } else {
+            handleMouseOver(d, this, false);
+          }
+        })
         .on("mouseout", handleMouseOut)
         .on("click", d => {
           if (this.isZorgcowboy(d)) {
@@ -156,8 +178,8 @@ export default {
 
 <style>
 .graph-container {
-  padding-top: 4em;
-  width: 100%;
+  padding: 4em;
+  width: calc(100% - 8em);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -197,14 +219,11 @@ export default {
 
 .dataPoint {
   border-radius: 100%;
-  margin: 0.2em;
+  margin: 0.4em;
   opacity: 0;
   transition-property: transform, margin;
   transition-duration: 0.3s, 0.5s;
-}
-
-.dataPoint:hover {
-  transform: scale(1.5);
-  margin: 0.7em;
+  position: relative;
+  z-index: 0;
 }
 </style>

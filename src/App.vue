@@ -12,11 +12,15 @@
       class="filters"
       :rawData="rawData"
       @selection-changed="dataToShow = $event"
+      @year-changed="yearToShow = $event"
+      @category-changed="categoryToShow = $event"
     />
     <Graph
       class="graph"
       :revenueData="dataToShow"
       :zorgCowboys="zorgCowboys"
+      :yearToShow="yearToShow"
+      :categoryToShow="categoryToShow"
     ></Graph>
   </div>
 </template>
@@ -40,7 +44,9 @@ export default {
     return {
       rawData: [],
       zorgCowboys: [],
-      dataToShow: []
+      dataToShow: [],
+      yearToShow: "2018",
+      categoryToShow: "alles"
     };
   },
   created() {
@@ -108,8 +114,8 @@ body {
   width: 100%;
   background-color: var(--pointerblue);
   position: fixed;
-  z-index: 2;
-  }
+  z-index: 5;
+}
 
 .header-title {
   font-size: 1.5em;

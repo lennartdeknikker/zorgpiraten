@@ -1,7 +1,7 @@
 <template>
   <div class="filters-container" :class="{ hide: showFilters }">
     <form action="#" @submit.prevent="scroll" class="form-filters">
-      <button class="close-button-mobile" @click="showFilters = true">
+      <button class="close-button-mobile" @click.prevent="showFilters = true">
         <i class="fas fa-times"></i>
       </button>
       <fieldset class="pick-year">
@@ -106,7 +106,8 @@
                 match.scrollIntoView({
                   behavior: 'smooth',
                   block: 'center'
-                })
+                });
+                showFilters = true;
               "
             >
               {{ match.getAttribute("data-name") }}
@@ -136,7 +137,7 @@ export default {
       dataToShow: [],
       searchText: "",
       matches: [],
-      showFilters: false
+      showFilters: true
     };
   },
   mounted() {
@@ -153,9 +154,11 @@ export default {
     },
     selectedCategory: function() {
       this.processData();
+      this.$emit("category-changed", this.selectedCategory);
     },
     selectedYear: function() {
       this.processData();
+      this.$emit("year-changed", this.selectedYear);
     },
     searchText: function() {
       this.highlightMatches();
@@ -238,6 +241,7 @@ export default {
       document
         .querySelector(`[data-name*=${this.TransformedSearchText}]`)
         .scrollIntoView({ behavior: "smooth" });
+      this.showFilters = true;
     }
   }
 };
@@ -252,6 +256,7 @@ export default {
   position: fixed;
   top: 4em;
   transition: transform 0.5s ease;
+  z-index: 3;
 }
 
 .form-filters {
