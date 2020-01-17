@@ -1,6 +1,15 @@
 <template>
   <div id="textbox" class="textbox-container">
     <div class="text-container">
+      <button
+      class="x-button"
+      @click="
+        scrollTo('.graph-container');
+        $emit('x-button-clicked');
+      "
+    >
+      <i class="fa fa-times"/>
+    </button>
       <h2 class="first-header">De winstlijn</h2>
       <p class="normal-text">
         Welkom bij de winstlijn van Pointer. 
@@ -18,13 +27,17 @@
         bovenin de webpagina!
       </p>
     </div>
-    
   </div>
 </template>
 
 <script>
 export default {
-  name: "Textbox"
+  name: "Textbox",
+  methods: {
+    scrollTo: function(selector) {
+      document.querySelector(selector).scrollIntoView();
+    }
+  }
 };
 </script>
 
@@ -61,7 +74,30 @@ export default {
 .normal-text {
   font-family: var(--font-family-zilla);
   font-weight: 700;
-  margin: 0 0 1rem ;
+  margin: 0 0 1rem;
 }
 
+/* x button */
+.x-button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2em;
+  border: none;
+  margin-bottom: -2em;
+  margin-left: 90%;
+  background-color: var(--red);
+  color: var(--grey-light);
+  font-weight: 700;
+  font-size: 1.3em;
+  cursor: pointer;
+  text-decoration-style: none;
+}
+
+.fa-times {
+  margin-top: 0.2em;
+}
+
+.hidden {
+  display: none;
+}
 </style>

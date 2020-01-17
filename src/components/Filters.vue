@@ -4,6 +4,7 @@
       <button class="close-button-mobile" @click.prevent="showFilters = true">
         <i class="fas fa-times"></i>
       </button>
+      <h1 class="filters-text">Filters</h1>
       <fieldset class="pick-year">
         <legend class="fieldset-title">Jaartal</legend>
         <input
@@ -76,6 +77,8 @@
         />
         <label class="label-text" for="thuiszorg">Thuiszorg</label>
       </fieldset>
+          <img src="images/asset14.png" class="filterimage"/>
+          <img src="images/asset4.png" class="filterimage1"/>
     </form>
     <button class="button-show-filters" @click="showFilters = !showFilters">
       <i class="fas fa-filter"></i>
@@ -189,18 +192,59 @@ export default {
   z-index: 2;
 }
 
+.filterimage {
+  width: 13em;
+  margin-top: 10em;
+  margin-left: -3em;
+  transform: rotate(45deg);
+  position: absolute;
+  opacity: 30%;
+}
+
+.filterimage1 {
+  width: 4.5em;
+  margin-top: -12.9em;
+  /* margin-left: 11.6em; */
+  /* transform: rotate(90deg); */
+  position: absolute;
+  opacity: 30%;
+}
+
+.filters-text {
+  font-size: 1.4em;
+  margin-top: -0.5em;
+  margin-bottom: 1em;
+  /* margin-right: 6em; */
+}
+
 .form-filters {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #c9473d;
-  height: 100%;
-  width: 25em;
+  background-color: var(--pointerblue);
+  height: 70%;
+  width: 20em;
   overflow: hidden;
+}
+
+.pick-year {
+  /* display: grid; */
+  width: 10em;
+  margin-bottom: -2.5em;
+}
+
+.pick-category {
+  display: grid;
+  width: 2em;
 }
 
 fieldset {
   border: 0;
+  width: 5em;
+  height: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
 }
 
 .highlight {
@@ -209,20 +253,15 @@ fieldset {
   height: 20px;
 }
 
-.search-result {
-  cursor: pointer;
-  color: var(--purple-light);
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .fieldset-title {
   font-size: 1em;
-  text-decoration: underline;
+  font-weight: 900;
+  color: var(--yellow);
 }
 
 /* filter buttons */
 .label-text {
+  justify-content: center;
   font-weight: 800;
   font-size: 0.9em;
   background-color: #dfdfdf;
@@ -240,7 +279,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + .label-text {
-  background-color: var(--textcolor);
+  background-color: var(--darkred);
   color: #f2f2f2;
   cursor: default;
 }
@@ -252,7 +291,7 @@ input[type="radio"]:checked + .label-text {
   cursor: pointer;
   padding: 0.5em;
   transition: transform 0.3s ease;
-  background-color: #c9473d;
+  background-color: var(--darkred);
   width: 2em;
   height: 6em;
   position: relative;
@@ -283,14 +322,17 @@ fieldset {
   transform: translateX(-25em);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   .form-filters {
-    width: 100vw;
+    width: 55vw;
   }
   .hide {
-    transform: translateX(-100vw);
+    transform: translateX(-55vw);
   }
-  .close-button-mobile {
+}
+
+@media (min-width: 600px) {
+   .close-button-mobile {
     display: block;
   }
 }

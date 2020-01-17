@@ -1,20 +1,19 @@
 <template>
   <transition-group tag="div" class="introduction-container" name="fade">
     <div v-if="showZeroState" key="introduction" class="introduction-elements">
-      <Textbox class="textbox" />
-      <Buttons @x-button-clicked="showZeroState = !showZeroState" />
+      <!-- <Textbox class="textbox" /> -->
+      <Textbox @x-button-clicked="showZeroState = !showZeroState" />
     </div>
   </transition-group>
 </template>
 
 <script>
 import Textbox from "@/components/introduction/Textbox.vue";
-import Buttons from "@/components/introduction/Buttons.vue";
+// import Buttons from "@/components/introduction/Buttons.vue";
 
 export default {
   components: {
-    Textbox,
-    Buttons
+    Textbox
   },
   data() {
     return {
