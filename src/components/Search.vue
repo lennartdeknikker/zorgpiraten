@@ -18,8 +18,8 @@
     <p v-if="matches.length === 1"></p>
     <p v-if="matches.length === 1">{{ matches.length }} resultaat gevonden.</p>
     <div v-if="matches.length < 10">
-      <ul class="search-result-list" v-for="match of matches" :key="match.id">
-        <li
+      <ul class="search-result-list">
+        <li v-for="match of matches" :key="match.id"
           class="search-result"
           @click="
             match.scrollIntoView({
@@ -81,13 +81,37 @@ export default {
 .search-result-list {
   list-style-type: none;
   text-align: left;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
 }
+
+.search-result {
+  background-color: #6b38e8b1;
+  border: 0.1px solid var(--grey-light);
+  color: white;
+  font-weight: 550;
+  text-align: left;
+  display: block;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  box-sizing: border-box;
+  width: 100%;
+  }
 
 .search-company {
   margin: 0;
   border-style: none;
-  width: 100%;
-  z-index: 0;
+  width: 60%;
+  min-width: 13.5em;
+  max-width: 20em;
+  height: auto;
+  z-index:0;
 }
 
 .search-company input {
@@ -98,8 +122,6 @@ export default {
 .search-bar {
   border: 2px solid var(--purple);
   background-color: var(--grey-light);
-  width: 60%;
-  max-width: 20em;
   margin: auto;
   margin-top: 0.5em;
   display: flex;
