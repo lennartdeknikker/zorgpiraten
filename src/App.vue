@@ -3,9 +3,6 @@
     <div class="header">
       <Logo class="logo-header" />
       <img src="images/asset1.png" class="triangle"/>
-      <h1 class="header-title">
-        #ZORGCOWBOYS
-      </h1>
     </div>
     <Introduction class="introduction" />
     <Filters
@@ -72,6 +69,7 @@ export default {
   --grey-light: #f2f2f2;
   --yellow: #faff2e;
   --red: #f65645;
+  --darkred: #c9473d;
   --blue-light: #1beaae;
   --purple: #6b38e8;
   --textcolor: #1d2939;
