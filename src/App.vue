@@ -88,7 +88,10 @@ export default {
 /* Main app styling */
 html {
   background-color: var(--grey-light);
-  background-image: radial-gradient(var(--blue-light) 5%, var(--grey-light) 5%);
+  background-image: radial-gradient(
+    var(--purple-light) 5%,
+    var(--grey-light) 5%
+  );
   background-position: 0 0;
   background-size: 40px 40px;
   background-attachment: fixed;

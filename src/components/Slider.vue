@@ -1,5 +1,5 @@
 <template>
-  <div class="slider-container">
+  <div class="slider-container" @scroll="$emit('hallo')">
     <input
       type="range"
       class="slider"
