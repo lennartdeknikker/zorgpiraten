@@ -97,7 +97,14 @@ export default {
           .style("transform", `scale(${isCowboy ? 4 : 1.5})`)
           .style("z-index", `${isCowboy ? 1 : 0}`);
         tooltip
-          .html(d.bedrijfsnaam + "<br />" + d.perc_winst + "%" + d3.event.pageX)
+          .html(
+            "<span class='tooltip-provider'>" +
+              d.bedrijfsnaam +
+              "</span>" +
+              "<span class='tooltip-revenue'>" +
+              d.perc_winst +
+              "% </span>"
+          )
           .style("left", d3.event.pageX - 65 + "px")
           .style("top", d3.event.pageY + 40 + "px")
           .style("z-index", "2")
@@ -203,6 +210,7 @@ export default {
   width: 8em;
   height: 8em;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--purple-light);
@@ -211,6 +219,16 @@ export default {
   padding: 0.5em;
   text-align: center;
   opacity: 0;
+}
+
+.tooltip-provider {
+  color: white;
+  margin-bottom: 0.5em;
+}
+
+.tooltip-revenue {
+  color: yellow;
+  font-size: 1.2em;
 }
 
 .data-group {
