@@ -2,10 +2,12 @@
   <div class="graph-container">
     <h2 class="jaartekst">
       <span v-if="categoryToShow === 'alles'">
-        Alle zorginstellingen in <span class="yeartoshow"> {{ yearToShow }} </span>
+        Alle zorginstellingen in
+        <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
       <span v-if="categoryToShow === 'geestelijkegezondheidszorg'">
-        Instellingen voor geestelijke gezondheidszorg in <span class="yeartoshow"> {{ yearToShow }} </span>
+        Instellingen voor geestelijke gezondheidszorg in
+        <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
       <span
         v-if="
@@ -14,7 +16,8 @@
             categoryToShow !== ''
         "
       >
-        Instellingen voor {{ categoryToShow }} in <span class="yeartoshow"> {{ yearToShow }} </span>
+        Instellingen voor {{ categoryToShow }} in
+        <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
     </h2>
     <Search />
@@ -180,10 +183,15 @@ export default {
       labels.remove();
 
       d3.selectAll(".data-group")
-        .insert("p")
+        .insert("div")
+        .attr("class", "label-container")
+        .append("p")
         .attr("class", "label")
         .attr("data-value", d => "l" + d.key / 10)
-        .html(d => d.key + " %");
+        .html(
+          d =>
+            `<span class="line">|</span> <br /> ${d.key} % <br /> <span class="line">|</span>`
+        );
     }
   }
 };
@@ -199,11 +207,22 @@ export default {
   align-items: center;
 }
 
+.label-container {
+  width: 100%;
+}
+
 .label {
   display: block;
   width: 100%;
   min-width: 18rem;
   max-width: 35rem;
+  font-weight: 800;
+}
+
+.line {
+  color: var(--purple);
+  font-size: 0.8em;
+  font-weight: bold;
 }
 
 .tooltip {

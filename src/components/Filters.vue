@@ -276,7 +276,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + .label-text {
-  background-color: var(--darkred);
+  background-color: var(--input-color);
   color: #f2f2f2;
   cursor: default;
 }
@@ -288,7 +288,7 @@ input[type="radio"]:checked + .label-text {
   cursor: pointer;
   padding: 0.5em;
   transition: transform 0.3s ease;
-  background-color: var(--darkred);
+  background-color: var(--input-color);
   width: 2em;
   height: 6em;
   position: relative;

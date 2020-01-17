@@ -54,7 +54,7 @@ export default {
 .alt-thumb {
   width: 100%;
   height: 5%;
-  background-color: #c9473d;
+  background-color: var(--input-color);
   position: absolute;
   top: 0;
   z-index: -1;

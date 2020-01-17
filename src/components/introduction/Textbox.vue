@@ -2,29 +2,27 @@
   <div id="textbox" class="textbox-container">
     <div class="text-container">
       <button
-      class="x-button"
-      @click="
-        scrollTo('.graph-container');
-        $emit('x-button-clicked');
-      "
-    >
-      <i class="fa fa-times"/>
-    </button>
+        class="x-button"
+        @click="
+          scrollTo('.graph-container');
+          $emit('x-button-clicked');
+        "
+      >
+        <i class="fa fa-times" />
+      </button>
       <h2 class="first-header">De winstlijn</h2>
       <p class="normal-text">
-        Welkom bij de winstlijn van Pointer. 
-        Op deze pagina hebben wij interessante data uit onze 
-        #ZorgCowboys onderzoeken uitgelicht.
-        
+        Welkom bij de winstlijn van Pointer. Op deze pagina hebben wij
+        interessante data uit onze #ZorgCowboys onderzoeken uitgelicht.
       </p>
       <p class="normal-text">
-        Wil je liever zelf de sherriff uithangen? Dat kan! 
-        Ga op zoek naar zorginstellingen in het filter menu. 
+        Wil je liever zelf de sherriff uithangen? Dat kan! Ga op zoek naar
+        zorginstellingen in het filter menu.
       </p>
 
       <p class="normal-text">
-        Iets opvallends gevonden? Stuur een tip via de knop
-        bovenin de webpagina!
+        Iets opvallends gevonden? Stuur een tip via de knop bovenin de
+        webpagina!
       </p>
     </div>
   </div>
@@ -87,7 +85,7 @@ export default {
   border: none;
   margin-bottom: -2em;
   margin-left: 90%;
-  background-color: var(--red);
+  background-color: var(--input-color);
   color: var(--grey-light);
   font-weight: 700;
   font-size: 1.3em;
