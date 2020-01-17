@@ -96,7 +96,7 @@ export default {
 
 /* search bar */
 .search-bar {
-  border: 2px solid var(--textcolor);
+  border: 2px solid var(--purple);
   background-color: var(--grey-light);
   width: 60%;
   max-width: 20em;
@@ -104,11 +104,10 @@ export default {
   margin-top: 0.5em;
   display: flex;
   justify-content: space-between;
-  border-radius: 0.3em;
 }
 
 .icon-search {
-  fill: darkgrey;
+  fill: var(--purple);
   width: 10%;
   height: 100%;
   min-width: 2rem;
@@ -117,7 +116,8 @@ export default {
 
 .search-input {
   color: var(--purple);
-  font-family: var(--font-family-tenso);
+  font-family: var(--font-family-zilla);
+  font-size: 0.8em;
   background-color: transparent;
   border: none;
   width: 90%;

@@ -1,9 +1,6 @@
 <template>
   <div class="filters-container" :class="{ hide: showFilters }">
     <form action="#" @submit.prevent="scroll" class="form-filters">
-      <button class="close-button-mobile" @click.prevent="showFilters = true">
-        <i class="fas fa-times"></i>
-      </button>
       <h1 class="filters-text">Filters</h1>
       <fieldset class="pick-year">
         <legend class="fieldset-title">Jaartal</legend>
@@ -183,11 +180,11 @@ export default {
 <style>
 .filters-container {
   display: flex;
-  height: calc(100vh - 3em);
+  height: calc(100vh - 4em);
   flex-direction: row;
   color: var(--grey);
   position: fixed;
-  top: 3em;
+  top: 4em;
   transition: transform 0.5s ease;
   z-index: 2;
 }
@@ -307,19 +304,8 @@ fieldset {
   outline: none;
 }
 
-.close-button-mobile {
-  position: absolute;
-  top: 1em;
-  right: 4em;
-  color: white;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  display: none;
-}
-
 .hide {
-  transform: translateX(-25em);
+  transform: translateX(-20em);
 }
 
 @media (max-width: 600px) {
@@ -328,12 +314,6 @@ fieldset {
   }
   .hide {
     transform: translateX(-55vw);
-  }
-}
-
-@media (min-width: 600px) {
-   .close-button-mobile {
-    display: block;
   }
 }
 </style>

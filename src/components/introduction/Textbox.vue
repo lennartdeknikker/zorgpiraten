@@ -52,13 +52,13 @@ export default {
 }
 
 .text-container {
-  background-color: var(--grey);
+  background-color: var(--pointerblue);
   /* decreases the width with the box-shadow width */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  box-shadow: -6px 6px #E5614E;
+  box-shadow: -5px 5px var(--blue-light);
   text-align: left;
   padding: 1rem;
   box-sizing: border-box;
@@ -66,6 +66,7 @@ export default {
 
 .first-header {
   font-family: var(--font-family-zilla);
+  color: var(--yellow);
   text-align: left;
   margin: 2rem 0 1rem;
   text-decoration: solid darkgrey underline;
@@ -73,6 +74,7 @@ export default {
 
 .normal-text {
   font-family: var(--font-family-zilla);
+  color: var(--grey);
   font-weight: 700;
   margin: 0 0 1rem;
 }

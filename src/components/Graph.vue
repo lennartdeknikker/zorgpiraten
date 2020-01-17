@@ -1,11 +1,11 @@
 <template>
   <div class="graph-container">
-    <h2>
+    <h2 class="jaartekst">
       <span v-if="categoryToShow === 'alles'">
-        Alle zorginstellingen in {{ yearToShow }}
+        Alle zorginstellingen in <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
       <span v-if="categoryToShow === 'geestelijkegezondheidszorg'">
-        Instellingen voor geestelijke gezondheidszorg in {{ yearToShow }}
+        Instellingen voor geestelijke gezondheidszorg in <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
       <span
         v-if="
@@ -14,7 +14,7 @@
             categoryToShow !== ''
         "
       >
-        Instellingen voor {{ categoryToShow }} in {{ yearToShow }}
+        Instellingen voor {{ categoryToShow }} in <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
     </h2>
     <Search />
@@ -249,5 +249,9 @@ export default {
   transition-duration: 0.3s, 0.5s;
   position: relative;
   z-index: 0;
+}
+
+.yeartoshow {
+  background-color: var(--yellow);
 }
 </style>
