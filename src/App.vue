@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="header">
-      <Logo/>
+      <Logo />
       <img src="images/asset1.png" class="triangle" />
     </div>
     <Introduction class="introduction" />
@@ -19,7 +19,7 @@
       :yearToShow="yearToShow"
       :categoryToShow="categoryToShow"
     ></Graph>
-    <Slider />
+    <Slider v-if="dataToShow" />
   </div>
 </template>
 

@@ -9,7 +9,9 @@
       max="9"
       orient="vertical"
     />
-    <div class="alt-thumb">{{ scrollHeight * 10 + "%" }}</div>
+    <div class="alt-thumb">
+      {{ scrollHeight * 10 + "%" }}
+    </div>
   </div>
 </template>
 
@@ -86,7 +88,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   border: 0px solid #000000;
 }
 input[type="range"]::-webkit-slider-thumb {
-  z-index: 10;
+  z-index: 2;
 }
 input[type="range"]:focus::-webkit-slider-runnable-track {
   background: var(--grey);

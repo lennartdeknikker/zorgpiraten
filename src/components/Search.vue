@@ -87,6 +87,7 @@ export default {
   margin: 0;
   border-style: none;
   width: 100%;
+  z-index: 0;
 }
 
 .search-company input {
