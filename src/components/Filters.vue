@@ -180,13 +180,13 @@ export default {
 <style>
 .filters-container {
   display: flex;
-  height: calc(100vh - 4em);
+  height: calc(100vh - 3em);
   flex-direction: row;
   color: var(--grey);
   position: fixed;
-  top: 4em;
+  top: 3em;
   transition: transform 0.5s ease;
-  z-index: 3;
+  z-index: 2;
 }
 
 .form-filters {

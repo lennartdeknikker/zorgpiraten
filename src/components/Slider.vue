@@ -9,7 +9,7 @@
       max="9"
       orient="vertical"
     />
-    <div class="alt-thumb"></div>
+    <div class="alt-thumb">{{ scrollHeight * 10 + "%" }}</div>
   </div>
 </template>
 
@@ -41,12 +41,12 @@ export default {
 
 <style scoped>
 .slider-container {
-  width: 2em;
+  width: 3em;
   height: 50em;
   position: fixed;
   top: 3em;
   right: 0;
-  z-index: 10;
+  background-color: var(--grey);
 }
 
 .alt-thumb {
@@ -55,6 +55,12 @@ export default {
   background-color: #c9473d;
   position: absolute;
   top: 0;
+  z-index: -1;
+  color: white;
+  padding: 0.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 input[type="range"] {
@@ -64,6 +70,7 @@ input[type="range"] {
   -webkit-appearance: slider-vertical;
   writing-mode: bt-lr;
   margin: 0;
+  opacity: 0;
 }
 input[type="range"]:focus {
   outline: none;
@@ -79,7 +86,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   border: 0px solid #000000;
 }
 input[type="range"]::-webkit-slider-thumb {
-  opacity: 0;
+  z-index: 10;
 }
 input[type="range"]:focus::-webkit-slider-runnable-track {
   background: var(--grey);

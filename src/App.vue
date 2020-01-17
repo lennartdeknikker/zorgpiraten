@@ -1,11 +1,8 @@
 <template>
   <div id="app">
     <div class="header">
-      <Logo class="logo-header" />
+      <Logo/>
       <img src="images/asset1.png" class="triangle" />
-      <h1 class="header-title">
-        #ZORGCOWBOYS
-      </h1>
     </div>
     <Introduction class="introduction" />
     <Filters
@@ -118,7 +115,8 @@ body {
   width: 100%;
   background-color: var(--pointerblue);
   position: fixed;
-  z-index: 5;
+  z-index: 2;
+  display: flex;
 }
 
 .header-title {
@@ -129,6 +127,5 @@ body {
 .triangle {
   width: 3em;
   display: flex;
-  margin-left: 7.9em;
 }
 </style>

@@ -1,8 +1,9 @@
 <template>
   <div class="logo-container">
-    <a href="https://pointer.kro-ncrv.nl/">
+    <a href="https://pointer.kro-ncrv.nl/" class="pointer-link">
       <svg
         id="Logo"
+        class="logo-svg"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 400 151.42"
       >
@@ -15,7 +16,13 @@
           class="logo-path"
           d="M129.58,56.71a24.43,24.43,0,0,0-6.48-5.88,27.86,27.86,0,0,0-7.49-3,35,35,0,0,0-8.51-1A34.61,34.61,0,0,0,96,48.5,23.47,23.47,0,0,0,87,54a25.09,25.09,0,0,0-6,9.77A41.93,41.93,0,0,0,78.8,77.81,42.73,42.73,0,0,0,81,92.26a25.73,25.73,0,0,0,6.12,9.95,23.69,23.69,0,0,0,9.11,5.51,35.16,35.16,0,0,0,11.21,1.74,29.27,29.27,0,0,0,15.16-3.72,24.39,24.39,0,0,0,9.65-10.49q3.36-6.77,3.36-17a47.57,47.57,0,0,0-1.5-11.93A25.6,25.6,0,0,0,129.58,56.71ZM114.35,92q-1.86,5.27-7,5.27-4.8,0-7-4.73T98.23,77.69q0-9.7,2.09-14.21A7,7,0,0,1,107.1,59q4.66,0,6.89,4.73t2.22,14.45A42.38,42.38,0,0,1,114.35,92Z"
         />
-        <rect class="logo-path" x="140.43" y="48.2" width="18.88" height="59.83" />
+        <rect
+          class="logo-path"
+          x="140.43"
+          y="48.2"
+          width="18.88"
+          height="59.83"
+        />
         <path
           class="logo-path"
           d="M202,46.76a20.5,20.5,0,0,0-9.77,2.46q-4.62,2.45-9,9.77L180.9,48.2H166.64V108h19.3V65.94q4.06-4.32,8.75-4.32a5.49,5.49,0,0,1,4.56,1.8q1.42,1.8,1.43,5.76V108H220V65.34q0-9-5-13.79T202,46.76Z"
@@ -43,33 +50,26 @@
 
 <style scoped>
 .logo-container {
-  width: 6.5em;
-  z-index: 1;
-  position: fixed;
-}
-
-.logo-header {
+  width: 10em;
+  height: 100%;
   background-color: var(--purple-light);
-    margin-left: -50.1vw;
-    margin-bottom: 0;
-    padding-left: 50vw;
-    padding-bottom: 0;
-    padding-right: 23px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-@media (max-width: 27em) {
-  .logo-header {
-    width: 5em;
-    margin-top: 1.2em;
-  }
+.logo-svg {
+  height: 100%;
+}
+
+.pointer-link {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .logo-path {
   fill: #1d2939;
 }
 </style>
-
