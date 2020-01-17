@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header">
       <Logo class="logo-header" />
-      <img src="images/asset1.png" class="triangle"/>
+      <img src="images/asset1.png" class="triangle" />
       <h1 class="header-title">
         #ZORGCOWBOYS
       </h1>
@@ -22,6 +22,7 @@
       :yearToShow="yearToShow"
       :categoryToShow="categoryToShow"
     ></Graph>
+    <Slider />
   </div>
 </template>
 
@@ -31,6 +32,7 @@ import Logo from "./components/Logo.vue";
 import Introduction from "./components/Introduction.vue";
 import Filters from "./components/Filters.vue";
 import Graph from "./components/Graph.vue";
+import Slider from "./components/Slider.vue";
 
 export default {
   name: "app",
@@ -38,7 +40,8 @@ export default {
     Logo,
     Introduction,
     Filters,
-    Graph
+    Graph,
+    Slider
   },
   data() {
     return {
@@ -75,7 +78,7 @@ export default {
   --blue-light: #1beaae;
   --purple: #6b38e8;
   --textcolor: #1d2939;
-  --pointerblue: #1F2938;
+  --pointerblue: #1f2938;
   /* font variables */
   --font-family-tenso: "Tenso", Helvetica, Arial, "Nimbus Sans L", sans-serif;
   --font-family-zilla: "Zilla Slab", Georgia, "Times New Roman", "DejaVu Serif",
@@ -91,6 +94,7 @@ html {
   background-position: 0 0;
   background-size: 40px 40px;
   background-attachment: fixed;
+  scrollbar-width: none;
 }
 
 body {
