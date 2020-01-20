@@ -2,12 +2,12 @@
   <div class="graph-container">
     <h2 class="jaartekst">
       <span v-if="categoryToShow === 'alles'">
-        Winstpercentage van alle zorginstellingen in
-        <span class="yeartoshow"> {{ yearToShow }} </span>
+        Winstpercentage van <br><span class="allhighlight">alle zorginstellingen</span> in
+        <span class="yearhighlight"> {{ yearToShow }} </span>
       </span>
       <span v-if="categoryToShow === 'geestelijkegezondheidszorg'">
-        Winstpercentage van instellingen voor geestelijke gezondheidszorg in
-        <span class="yeartoshow"> {{ yearToShow }} </span>
+        Winstpercentage van instellingen voor <span class="ggzhighlight">GGZ</span>
+        in <span class="yearhighlight"> {{ yearToShow }} </span>
       </span>
       <span
         v-if="
@@ -16,8 +16,8 @@
             categoryToShow !== ''
         "
       >
-        Winstpercentage van instellingen voor {{ categoryToShow }} in
-        <span class="yeartoshow"> {{ yearToShow }} </span>
+        Winstpercentage van instellingen voor <span class="typehighlight">{{ categoryToShow }}</span> 
+        in <span class="yearhighlight"> {{ yearToShow }} </span>
       </span>
     </h2>
     <Search />
@@ -270,7 +270,23 @@ export default {
   z-index: 0;
 }
 
-.yeartoshow {
+.jaartekst {
+  max-width: 18em;
+}
+
+.yearhighlight {
+  background-color: var(--yellow);
+}
+
+.ggzhighlight {
+  background-color: var(--yellow);
+}
+
+.typehighlight {
+  background-color: var(--yellow);
+}
+
+.allhighlight {
   background-color: var(--yellow);
 }
 </style>

@@ -74,8 +74,6 @@
         />
         <label class="label-text" for="thuiszorg">Thuiszorg</label>
       </fieldset>
-      <img src="images/asset14.png" class="filterimage" />
-      <img src="images/asset4.png" class="filterimage1" />
     </form>
     <button class="button-show-filters" @click="showFilters = !showFilters">
       <i class="fas fa-filter"></i>
@@ -189,24 +187,6 @@ export default {
   transition: transform 0.5s ease;
   z-index: 2;
   overflow: hidden;
-}
-
-.filterimage {
-  width: 13em;
-  transform: rotate(45deg);
-  transform-origin: right center;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  opacity: 30%;
-}
-
-.filterimage1 {
-  width: 4.5em;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 30%;
 }
 
 .filters-text {
