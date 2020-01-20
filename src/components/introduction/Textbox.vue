@@ -73,24 +73,23 @@ export default {
 .normal-text {
   font-family: var(--font-family-zilla);
   color: var(--grey);
-  font-weight: 700;
+  font-weight: 200;
   margin: 0 0 1rem;
 }
 
 /* x button */
 .x-button {
-  width: 2rem;
-  height: 2rem;
+  padding: 0.1em;
+  min-height: 1.6em;
+  min-width: 1.6em;
   border-radius: 2em;
-  border: none;
   margin-bottom: -2em;
-  margin-left: 90%;
+  border: none;
+  align-self: flex-end;
   background-color: var(--input-color);
   color: var(--grey-light);
-  font-weight: 700;
   font-size: 1.3em;
   cursor: pointer;
-  text-decoration-style: none;
 }
 
 .fa-times {

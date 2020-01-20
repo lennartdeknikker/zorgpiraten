@@ -2,11 +2,11 @@
   <div class="graph-container">
     <h2 class="jaartekst">
       <span v-if="categoryToShow === 'alles'">
-        Alle zorginstellingen in
+        Winstpercentage van alle zorginstellingen in
         <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
       <span v-if="categoryToShow === 'geestelijkegezondheidszorg'">
-        Instellingen voor geestelijke gezondheidszorg in
+        Winstpercentage van instellingen voor geestelijke gezondheidszorg in
         <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
       <span
@@ -16,7 +16,7 @@
             categoryToShow !== ''
         "
       >
-        Instellingen voor {{ categoryToShow }} in
+        Winstpercentage van instellingen voor {{ categoryToShow }} in
         <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
     </h2>
