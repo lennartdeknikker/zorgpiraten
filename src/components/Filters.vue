@@ -74,8 +74,8 @@
         />
         <label class="label-text" for="thuiszorg">Thuiszorg</label>
       </fieldset>
-          <img src="images/asset14.png" class="filterimage"/>
-          <img src="images/asset4.png" class="filterimage1"/>
+      <img src="images/asset14.png" class="filterimage" />
+      <img src="images/asset4.png" class="filterimage1" />
     </form>
     <button class="button-show-filters" @click="showFilters = !showFilters">
       <i class="fas fa-filter"></i>
@@ -180,74 +180,66 @@ export default {
 <style>
 .filters-container {
   display: flex;
-  height: calc(100vh - 4em);
+  height: auto;
   flex-direction: row;
+  align-items: flex-end;
   color: var(--grey);
   position: fixed;
-  top: 4em;
+  top: 4.5rem;
   transition: transform 0.5s ease;
   z-index: 2;
+  overflow: hidden;
 }
 
 .filterimage {
   width: 13em;
-  margin-top: 10em;
-  margin-left: -3em;
   transform: rotate(45deg);
+  transform-origin: right center;
   position: absolute;
+  bottom: 0;
+  left: 0;
   opacity: 30%;
 }
 
 .filterimage1 {
   width: 4.5em;
-  margin-top: -12.9em;
-  /* margin-left: 11.6em; */
-  /* transform: rotate(90deg); */
   position: absolute;
+  top: 0;
+  left: 0;
   opacity: 30%;
 }
 
 .filters-text {
   font-size: 1.4em;
-  margin-top: -0.5em;
-  margin-bottom: 1em;
-  /* margin-right: 6em; */
+  margin-top: 0;
 }
 
 .form-filters {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: var(--pointerblue);
-  height: 70%;
+  height: 100%;
   width: 20em;
   overflow: hidden;
+  padding: 1.5rem 0;
 }
 
 .pick-year {
-  /* display: grid; */
   width: 10em;
-  margin-bottom: -2.5em;
+  margin-bottom: 0.5rem;
 }
 
 .pick-category {
-  display: grid;
-  width: 2em;
+  display: flex;
+  flex-direction: column;
+  width: 3rem;
 }
 
 fieldset {
   border: 0;
-  width: 5em;
-  height: 10em;
-  margin-left: auto;
-  margin-right: auto;
   z-index: 1;
-}
-
-.highlight {
-  border: 10px solid var(--purple-light);
-  width: 20px;
-  height: 20px;
 }
 
 .fieldset-title {
@@ -265,7 +257,6 @@ fieldset {
   color: #626972;
   padding: 0.5em;
   margin: 0.3em;
-  margin-top: 0.5em;
   display: inline-flex;
   border-radius: 0.5em;
   cursor: pointer;
@@ -291,13 +282,7 @@ input[type="radio"]:checked + .label-text {
   background-color: var(--input-color);
   width: 2em;
   height: 6em;
-  position: relative;
-  top: calc(50% - 3em);
   font-size: 1.2em;
-}
-
-fieldset {
-  margin-block-end: 2em;
 }
 
 .button-show-filters:focus {
