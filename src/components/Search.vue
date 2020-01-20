@@ -19,7 +19,9 @@
     <p v-if="matches.length === 1">{{ matches.length }} resultaat gevonden.</p>
     <div v-if="matches.length < 10">
       <ul class="search-result-list">
-        <li v-for="match of matches" :key="match.id"
+        <li
+          v-for="match of matches"
+          :key="match.id"
           class="search-result"
           @click="
             match.scrollIntoView({
@@ -29,7 +31,7 @@
             showFilters = true;
           "
         >
-          {{ match.getAttribute("data-name") }}
+          {{ match.getAttribute("data-name") | removeDashes }}
         </li>
       </ul>
     </div>
@@ -43,6 +45,11 @@ export default {
       searchText: "",
       matches: []
     };
+  },
+  filters: {
+    removeDashes: function(stringValue) {
+      return stringValue.replace(/-/g, " ");
+    }
   },
   computed: {
     TransformedSearchText: function() {
@@ -102,7 +109,7 @@ export default {
   padding-bottom: 0.5em;
   box-sizing: border-box;
   width: 100%;
-  }
+}
 
 .search-company {
   margin: 0;
@@ -111,7 +118,7 @@ export default {
   min-width: 13.5em;
   max-width: 20em;
   height: auto;
-  z-index:0;
+  z-index: 0;
 }
 
 .search-company input {
