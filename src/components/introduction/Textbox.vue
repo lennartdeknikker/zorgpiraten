@@ -17,12 +17,7 @@
       </p>
       <p class="normal-text">
         Wil je liever zelf de sherriff uithangen? Dat kan! Ga op zoek naar
-        zorginstellingen in het filter menu.
-      </p>
-
-      <p class="normal-text">
-        Iets opvallends gevonden? Stuur een tip via de knop bovenin de
-        webpagina!
+        specifieke data in het filter menu.
       </p>
     </div>
   </div>
