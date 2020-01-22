@@ -1,82 +1,80 @@
 <template>
   <div class="filters-container" :class="{ hide: showFilters }">
-    <div>
-      <form action="#" @submit.prevent="scroll" class="form-filters">
-        <h1 class="filters-text">Filters</h1>
-        <fieldset class="pick-year">
-          <legend class="fieldset-title">Jaartal</legend>
-          <input
-            v-model="selectedYear"
-            type="radio"
-            name="year"
-            value="2018"
-            id="2018"
-          />
-          <label class="label-text" for="2018">2018</label>
-          <input
-            v-model="selectedYear"
-            type="radio"
-            name="year"
-            value="2017"
-            id="2017"
-          />
-          <label class="label-text" for="2017">2017</label>
-          <input
-            v-model="selectedYear"
-            type="radio"
-            name="year"
-            value="2016"
-            id="2016"
-          />
-          <label class="label-text" for="2016">2016</label>
-          <input
-            v-model="selectedYear"
-            type="radio"
-            name="year"
-            value="2015"
-            id="2015"
-          />
-          <label class="label-text" for="2015">2015</label>
-        </fieldset>
-        <fieldset class="pick-category">
-          <legend class="fieldset-title">Soort zorg</legend>
-          <input
-            v-model="selectedCategory"
-            type="radio"
-            name="category"
-            value="alles"
-            id="all"
-          />
-          <label class="label-text" for="all">Alle zorg</label>
-          <input
-            v-model="selectedCategory"
-            type="radio"
-            name="category"
-            value="geestelijkegezondheidszorg"
-            id="geestelijk"
-          />
-          <label class="label-text" for="geestelijk"
-            >Geestelijke Gezondheidszorg</label
-          >
-          <input
-            v-model="selectedCategory"
-            type="radio"
-            name="category"
-            value="gehandicaptenzorg"
-            id="handicap"
-          />
-          <label class="label-text" for="handicap">Gehandicaptenzorg</label>
-          <input
-            v-model="selectedCategory"
-            type="radio"
-            name="category"
-            value="thuiszorg"
-            id="thuiszorg"
-          />
-          <label class="label-text" for="thuiszorg">Thuiszorg</label>
-        </fieldset>
-      </form>
-    </div>
+    <form action="#" @submit.prevent="scroll" class="form-filters">
+      <h1 class="filters-text">Filters</h1>
+      <fieldset class="pick-year">
+        <legend class="fieldset-title">Jaartal</legend>
+        <input
+          v-model="selectedYear"
+          type="radio"
+          name="year"
+          value="2018"
+          id="2018"
+        />
+        <label class="label-text" for="2018">2018</label>
+        <input
+          v-model="selectedYear"
+          type="radio"
+          name="year"
+          value="2017"
+          id="2017"
+        />
+        <label class="label-text" for="2017">2017</label>
+        <input
+          v-model="selectedYear"
+          type="radio"
+          name="year"
+          value="2016"
+          id="2016"
+        />
+        <label class="label-text" for="2016">2016</label>
+        <input
+          v-model="selectedYear"
+          type="radio"
+          name="year"
+          value="2015"
+          id="2015"
+        />
+        <label class="label-text" for="2015">2015</label>
+      </fieldset>
+      <fieldset class="pick-category">
+        <legend class="fieldset-title">Soort zorg</legend>
+        <input
+          v-model="selectedCategory"
+          type="radio"
+          name="category"
+          value="alles"
+          id="all"
+        />
+        <label class="label-text" for="all">Alle zorg</label>
+        <input
+          v-model="selectedCategory"
+          type="radio"
+          name="category"
+          value="geestelijkegezondheidszorg"
+          id="geestelijk"
+        />
+        <label class="label-text" for="geestelijk"
+          >Geestelijke Gezondheidszorg</label
+        >
+        <input
+          v-model="selectedCategory"
+          type="radio"
+          name="category"
+          value="gehandicaptenzorg"
+          id="handicap"
+        />
+        <label class="label-text" for="handicap">Gehandicaptenzorg</label>
+        <input
+          v-model="selectedCategory"
+          type="radio"
+          name="category"
+          value="thuiszorg"
+          id="thuiszorg"
+        />
+        <label class="label-text" for="thuiszorg">Thuiszorg</label>
+      </fieldset>
+    </form>
     <button class="button-show-filters" @click="showFilters = !showFilters">
       <i class="fas fa-filter"></i>
     </button>
