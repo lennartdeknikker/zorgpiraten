@@ -12,6 +12,7 @@
       @year-changed="yearToShow = $event"
       @category-changed="categoryToShow = $event"
     />
+    <MiniaturePanel :rawData="dataToShow" />
     <Graph
       class="graph"
       :revenueData="dataToShow"
@@ -30,6 +31,7 @@ import Introduction from "./components/Introduction.vue";
 import Filters from "./components/Filters.vue";
 import Graph from "./components/Graph.vue";
 import Slider from "./components/Slider.vue";
+import MiniaturePanel from "./components/MiniaturePanel.vue";
 
 export default {
   name: "app",
@@ -38,7 +40,8 @@ export default {
     Introduction,
     Filters,
     Graph,
-    Slider
+    Slider,
+    MiniaturePanel
   },
   data() {
     return {

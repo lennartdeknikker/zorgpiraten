@@ -76,7 +76,6 @@
           <label class="label-text" for="thuiszorg">Thuiszorg</label>
         </fieldset>
       </form>
-      <Miniature :rawData="rawData" />
     </div>
     <button class="button-show-filters" @click="showFilters = !showFilters">
       <i class="fas fa-filter"></i>
@@ -85,12 +84,8 @@
 </template>
 
 <script>
-import Miniature from "./Miniature.vue";
 import * as d3 from "d3";
 export default {
-  components: {
-    Miniature
-  },
   props: ["rawData"],
   data() {
     return {
