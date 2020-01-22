@@ -226,7 +226,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   position: relative;
-  left: -5rem;
+  left: -2rem;
   color: var(--purple);
 }
 
