@@ -2,11 +2,11 @@
   <div class="graph-container">
     <h2 class="jaartekst">
       <span v-if="categoryToShow === 'alles'">
-        Winstpercentage van alle zorginstellingen in
+        Winstpercentages van alle zorginstellingen in
         <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
       <span v-if="categoryToShow === 'geestelijkegezondheidszorg'">
-        Winstpercentage van instellingen voor geestelijke gezondheidszorg in
+        Winstpercentages van instellingen voor geestelijke gezondheidszorg in
         <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
       <span
@@ -16,7 +16,7 @@
             categoryToShow !== ''
         "
       >
-        Winstpercentage van instellingen voor {{ categoryToShow }} in
+        Winstpercentages van instellingen voor {{ categoryToShow }} in
         <span class="yeartoshow"> {{ yearToShow }} </span>
       </span>
     </h2>
@@ -42,8 +42,16 @@ export default {
   data: function() {
     return {
       colorScale: {
-        domain: [-100, -20, 0, 20, 100],
-        range: ["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]
+        domain: [-100, -10, -10, 0, 10, 10, 100],
+        range: [
+          "#f65645",
+          "#faff2e",
+          "#1beaae",
+          "#1beaae",
+          "#1beaae",
+          "#faff2e",
+          "#f65645"
+        ]
       }
     };
   },
@@ -137,10 +145,10 @@ export default {
           return this.isZorgcowboy(d) ? "dataPoint zorg-cowboy" : "dataPoint";
         })
         .style("width", d => {
-          return this.isZorgcowboy(d) ? "60px" : "30px";
+          return this.isZorgcowboy(d) ? "60px" : "20px";
         })
         .style("height", d => {
-          return this.isZorgcowboy(d) ? "60px" : "30px";
+          return this.isZorgcowboy(d) ? "60px" : "20px";
         })
         .style("background", d => {
           if (!this.isZorgcowboy(d)) {
@@ -179,7 +187,7 @@ export default {
         .remove();
     },
     renderLabels() {
-      let labels = d3.selectAll(".label");
+      let labels = d3.selectAll(".label-container");
       labels.remove();
 
       d3.selectAll(".data-group")
@@ -188,10 +196,7 @@ export default {
         .append("p")
         .attr("class", "label")
         .attr("data-value", d => "l" + d.key / 10)
-        .html(
-          d =>
-            `<span class="line">|</span> <br /> ${d.key} % <br /> <span class="line">|</span>`
-        );
+        .html(d => `${d.key} % -`);
     }
   }
 };
@@ -209,20 +214,20 @@ export default {
 
 .label-container {
   width: 100%;
+  height: 0;
 }
 
 .label {
-  display: block;
   width: 100%;
   min-width: 18rem;
   max-width: 35rem;
   font-weight: 800;
-}
-
-.line {
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  left: -2rem;
   color: var(--purple);
-  font-size: 0.8em;
-  font-weight: bold;
 }
 
 .tooltip {
@@ -262,7 +267,7 @@ export default {
 
 .dataPoint {
   border-radius: 100%;
-  margin: 0.4em;
+  margin: 0.1rem;
   opacity: 0;
   transition-property: transform, margin;
   transition-duration: 0.3s, 0.5s;
