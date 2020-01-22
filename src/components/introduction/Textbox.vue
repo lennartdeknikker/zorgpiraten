@@ -12,12 +12,21 @@
       </button>
       <h2 class="first-header">De winstlijn</h2>
       <p class="normal-text">
-        Welkom bij de winstlijn van Pointer. Op deze pagina hebben wij
-        interessante data uit onze #ZorgCowboys onderzoeken uitgelicht.
-      </p>
-      <p class="normal-text">
-        Wil je liever zelf de sherriff uithangen? Dat kan! Ga op zoek naar
-        specifieke data in het filter menu.
+        Welkom bij de winstlijn van Pointer.
+        Exploreer door de data en doe zelf onderzoek naar de zorgcowboys.
+        <br>
+        <br>
+        Van boven naar onder zie je de 
+        grootste winst tot het grootste verlies wat wordt gemaakt door 
+        bedrijven in de zorg.
+        <br>
+        Bedrijven die in onze eerdere stukken over zorgcowboys zijn 
+        voorgekomen zijn uitgelicht.
+        <br>
+        <br>
+        Gebruik het filtermenu en begin met het vergelijken van data!
+        <br>
+        Iets opvallends gevonden? Laat het Pointer weten.
       </p>
     </div>
   </div>
