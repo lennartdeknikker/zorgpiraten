@@ -21,7 +21,7 @@
       <ul class="search-result-list">
         <li
           v-for="match of matches"
-          :key="match.id"
+          :key="match.name"
           class="search-result"
           @click="
             match.scrollIntoView({
@@ -84,7 +84,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .search-result-list {
   list-style-type: none;
   text-align: left;
@@ -97,7 +97,7 @@ export default {
 }
 
 .search-result {
-  background-color: #6b38e8b1;
+  background-color: #6b38e8;
   border: 0.1px solid var(--grey-light);
   color: white;
   font-weight: 550;
@@ -158,5 +158,10 @@ export default {
 
 fieldset {
   margin-block-end: 2em;
+}
+
+.highlight {
+  border: 10px solid var(--grey);
+  margin: 1rem;
 }
 </style>

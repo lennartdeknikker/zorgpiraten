@@ -76,8 +76,8 @@
           <label class="label-text" for="thuiszorg">Thuiszorg</label>
         </fieldset>
       </form>
+      <Miniature :rawData="rawData" />
     </div>
-    <Miniature />
     <button class="button-show-filters" @click="showFilters = !showFilters">
       <i class="fas fa-filter"></i>
     </button>
