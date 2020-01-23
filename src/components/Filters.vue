@@ -183,7 +183,7 @@ export default {
   align-items: flex-end;
   color: var(--grey);
   position: fixed;
-  top: 4.5rem;
+  top: 3rem;
   transition: transform 0.5s ease;
   z-index: 2;
   overflow: hidden;
@@ -204,6 +204,7 @@ export default {
   width: 20em;
   overflow: hidden;
   padding: 1.5rem 0;
+  border-bottom: 2px var(--yellow) solid;
 }
 
 .pick-year {
@@ -263,6 +264,7 @@ input[type="radio"]:checked + .label-text {
   width: 2em;
   height: 6em;
   font-size: 1.2em;
+  margin-bottom: 0.1em;
 }
 
 .button-show-filters:focus {

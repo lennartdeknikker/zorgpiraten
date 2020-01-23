@@ -196,7 +196,7 @@ export default {
         .append("p")
         .attr("class", "label")
         .attr("data-value", d => "l" + d.key / 10)
-        .html(d => `${d.key} % -`);
+        .html(d => `${d.key}%`);
     }
   }
 };
@@ -226,8 +226,8 @@ export default {
   display: flex;
   justify-content: flex-start;
   position: relative;
-  left: -2rem;
-  color: var(--purple);
+  left: 31.5rem;
+  color: var(--purple-light);
 }
 
 .tooltip {
