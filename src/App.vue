@@ -20,7 +20,7 @@
       :yearToShow="yearToShow"
       :categoryToShow="categoryToShow"
     ></Graph>
-    <Slider v-if="dataToShow" />
+    <!-- <Slider v-if="dataToShow" /> -->
   </div>
 </template>
 
@@ -30,7 +30,7 @@ import Logo from "./components/Logo.vue";
 import Introduction from "./components/Introduction.vue";
 import Filters from "./components/Filters.vue";
 import Graph from "./components/Graph.vue";
-import Slider from "./components/Slider.vue";
+// import Slider from "./components/Slider.vue";
 import MiniaturePanel from "./components/MiniaturePanel.vue";
 
 export default {
@@ -40,7 +40,7 @@ export default {
     Introduction,
     Filters,
     Graph,
-    Slider,
+    // Slider,
     MiniaturePanel
   },
   data() {
