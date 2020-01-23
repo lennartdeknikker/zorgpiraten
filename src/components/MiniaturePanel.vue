@@ -54,6 +54,7 @@ export default {
 
 .miniature-panel {
   display: flex;
+  border-top: 2px var(--yellow) solid;
   flex-direction: column;
   justify-content: center;
   align-items: center;

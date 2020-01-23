@@ -124,6 +124,7 @@ body {
   position: fixed;
   z-index: 2;
   display: flex;
+  filter: drop-shadow(0 -2px 4px black);
 }
 
 .header-title {
