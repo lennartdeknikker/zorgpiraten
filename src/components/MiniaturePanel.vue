@@ -86,6 +86,10 @@ export default {
   left: 2rem;
 }
 
+.button-show-miniature:focus {
+  outline: none;
+}
+
 .hide {
   transform: translateX(-20rem);
 }

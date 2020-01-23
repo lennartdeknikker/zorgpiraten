@@ -231,6 +231,8 @@ export default {
   display: flex;
   justify-content: flex-end;
   color: var(--purple-light);
+  position: relative;
+  left: 2.5rem;
 }
 
 .tooltip {
