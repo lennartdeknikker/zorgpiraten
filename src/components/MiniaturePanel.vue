@@ -49,7 +49,6 @@ export default {
   z-index: 2;
   left: -2rem;
   cursor: pointer;
-  min-width: 22.4rem;
 }
 
 .miniature-panel {
@@ -65,7 +64,6 @@ export default {
   padding: 1.5rem 0 0;
   position: relative;
   left: 2rem;
-  transition: width 1s ease;
 }
 
 .miniature-text {
