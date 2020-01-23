@@ -1,6 +1,6 @@
 <template>
   <svg
-    class="graph"
+    class="miniature"
     width="10em"
     height="10em"
     @click="big = !big"
@@ -55,7 +55,7 @@ export default {
         .scaleLinear()
         .domain([-100, -10, 0, 10, 100])
         .range(["#f65645", "#faff2e", "#1beaae", "#faff2e", "#f65645"]);
-      const svg = d3.select(".graph");
+      const svg = d3.select(".miniature");
       svg
         .attr("viewBox", "-10000 -1000 20000 3800")
         .selectAll(".dgroup")
@@ -95,7 +95,7 @@ export default {
 </script>
 
 <style>
-.graph {
+.miniature {
   height: 100%;
   width: 100%;
   transition: width 1.2s ease;
