@@ -95,7 +95,7 @@ After reviewing your request, your changes will be merged with the master branch
 - Eva Janssen
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## Acknowledgements
 - Thanks to Pointer for clear briefing and helpful feedback along the way.
