@@ -38,8 +38,9 @@ export default {
   position: fixed;
   bottom: 0;
   transition: transform 0.5s ease;
+  align-items: center;
+  justify-content: center;
   z-index: 2;
-  overflow: hidden;
 }
 
 .miniature-panel {
@@ -70,7 +71,6 @@ export default {
   width: 2em;
   height: 6em;
   font-size: 1.2em;
-  margin-bottom: 6.9em;
 }
 
 @media (max-width: 600px) {

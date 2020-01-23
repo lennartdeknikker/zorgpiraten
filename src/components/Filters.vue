@@ -180,7 +180,7 @@ export default {
   display: flex;
   height: auto;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
   color: var(--grey);
   position: fixed;
   top: 3rem;
