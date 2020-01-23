@@ -1,9 +1,5 @@
 <template>
-  <svg
-    class="miniature"
-    width="10em"
-    height="10em"
-  ></svg>
+  <svg class="miniature" width="10em" height="10em"></svg>
 </template>
 
 <script>

@@ -139,7 +139,7 @@ export default {
       }
 
       function handleClick(target) {
-        if (!target) window.location.href = target;
+        if (target) window.location.href = target;
       }
 
       dataPoints
@@ -233,6 +233,10 @@ export default {
   color: var(--purple-light);
   position: relative;
   left: 2.5rem;
+}
+
+.zorg-cowboy {
+  cursor: pointer;
 }
 
 .tooltip {
