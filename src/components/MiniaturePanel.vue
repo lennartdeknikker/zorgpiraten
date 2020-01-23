@@ -49,6 +49,7 @@ export default {
   z-index: 2;
   left: -2rem;
   cursor: pointer;
+  min-width: 22.4rem;
 }
 
 .miniature-panel {
@@ -58,11 +59,12 @@ export default {
   align-items: center;
   background-color: var(--pointerblue);
   height: 100%;
-  width: 20em;
+  width: 20rem;
   overflow: hidden;
-  padding: 0.5rem 0;
+  padding: 1.5rem 0 0;
   position: relative;
   left: 2rem;
+  transition: width 1s ease;
 }
 
 .miniature-text {
@@ -77,7 +79,7 @@ export default {
   cursor: pointer;
   padding: 0.5em;
   transition: transform 0.3s ease;
-  background-color: #4f29b1;
+  background-color: var(--purple);
   width: 2em;
   height: 6em;
   font-size: 1.2em;
@@ -101,6 +103,15 @@ export default {
 .bigger .miniature-panel {
   width: 100%;
   left: 0;
+  background-color: var(--grey-light);
+  background-image: radial-gradient(
+    var(--purple-light) 5%,
+    var(--grey-light) 5%
+  );
+  background-position: 0 0;
+  background-size: 40px 40px;
+  background-attachment: fixed;
+  scrollbar-width: none;
 }
 
 .bigger .button-show-miniature {
@@ -110,6 +121,10 @@ export default {
 .bigger .miniature {
   width: 100%;
   height: 100%;
+}
+
+.bigger .miniature-text {
+  color: var(--pointerblue);
 }
 
 .bigger .svg-container {
