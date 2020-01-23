@@ -1,8 +1,13 @@
 <template>
-  <div class="miniature-panel-container" :class="{ hide: showMiniature }">
-    <div class="miniature-panel">
+  <div
+    class="miniature-panel-container"
+    :class="{ hide: showMiniature, bigger: big }"
+  >
+    <div class="miniature-panel" @click="big = !big">
       <h1 class="miniature-text">Totaal overzicht</h1>
-      <Miniature :rawData="rawData" />
+      <div class="svg-container">
+        <Miniature :rawData="rawData" />
+      </div>
     </div>
     <button
       class="button-show-miniature"
@@ -21,7 +26,8 @@ export default {
   },
   data() {
     return {
-      showMiniature: true
+      showMiniature: true,
+      big: false
     };
   },
   components: {
@@ -42,6 +48,7 @@ export default {
   justify-content: center;
   z-index: 2;
   left: -2rem;
+  cursor: pointer;
 }
 
 .miniature-panel {
@@ -53,14 +60,14 @@ export default {
   height: 100%;
   width: 20em;
   overflow: hidden;
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
   position: relative;
   left: 2rem;
 }
 
 .miniature-text {
   font-size: 1.4em;
-  margin-top: 0;
+  margin: 0 0 0.2rem;
 }
 
 .button-show-miniature {
@@ -80,6 +87,34 @@ export default {
 
 .hide {
   transform: translateX(-20rem);
+}
+
+.bigger {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  left: 0;
+  background-color: var(--pointerblue);
+}
+
+.bigger .miniature-panel {
+  width: 100%;
+  left: 0;
+}
+
+.bigger .button-show-miniature {
+  display: none;
+}
+
+.bigger .miniature {
+  width: 100%;
+  height: 100%;
+}
+
+.bigger .svg-container {
+  width: 50%;
+  height: 90%;
 }
 
 @media (max-width: 600px) {
