@@ -224,9 +224,7 @@ export default {
   font-weight: 800;
   margin: 0;
   display: flex;
-  justify-content: flex-start;
-  position: relative;
-  left: 31.5rem;
+  justify-content: flex-end;
   color: var(--purple-light);
 }
 

@@ -2,9 +2,7 @@
   <transition-group tag="div" class="introduction-container" name="fade">
     <div v-if="showZeroState" key="introduction" class="introduction-elements">
       <!-- <Textbox class="textbox" /> -->
-      <Textbox
-        @x-button-clicked="showZeroState = !showZeroState"
-      />
+      <Textbox @x-button-clicked="showZeroState = !showZeroState" />
     </div>
   </transition-group>
 </template>
@@ -28,7 +26,7 @@ export default {
 <style>
 .introduction-container {
   position: fixed;
-  z-index: 2;
+  z-index: 3;
 }
 
 .introduction-elements {

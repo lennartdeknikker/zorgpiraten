@@ -156,7 +156,7 @@ export default {
   outline: none;
 }
 
-fieldset {
+.search-company {
   margin-block-end: 2em;
 }
 

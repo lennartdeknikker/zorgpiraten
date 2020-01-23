@@ -1,9 +1,13 @@
 <template>
   <div class="miniature-panel-container" :class="{ hide: showMiniature }">
-    <div class="miniature-panel"> <h1 class="miniature-text">Totaal overzicht</h1>
-    <Miniature :rawData="rawData" />
+    <div class="miniature-panel">
+      <h1 class="miniature-text">Totaal overzicht</h1>
+      <Miniature :rawData="rawData" />
     </div>
-    <button class="button-show-miniature" @click="showMiniature = !showMiniature">
+    <button
+      class="button-show-miniature"
+      @click="showMiniature = !showMiniature"
+    >
       <i class="fas fa-search"></i>
     </button>
   </div>
@@ -15,7 +19,7 @@ export default {
   props: {
     rawData: Array
   },
-   data() {
+  data() {
     return {
       showMiniature: true
     };
@@ -30,13 +34,11 @@ export default {
 .miniature-panel-container {
   display: flex;
   height: auto;
-  flex-direction: row;
-  align-items: flex-end;
   color: var(--grey);
   position: fixed;
-  top: 30rem;
+  top: 28.5rem;
   transition: transform 0.5s ease;
-  z-index: 1;
+  z-index: 2;
   overflow: hidden;
 }
 
