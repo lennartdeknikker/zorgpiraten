@@ -2,12 +2,16 @@
   <div class="graph-container">
     <h2 class="jaartekst">
       <span v-if="categoryToShow === 'alles'">
-        Winstpercentage van <br><span class="allhighlight">alle zorginstellingen</span> in
+        Winstpercentage van <br /><span class="allhighlight"
+          >alle zorginstellingen</span
+        >
+        in
         <span class="yearhighlight"> {{ yearToShow }} </span>
       </span>
       <span v-if="categoryToShow === 'geestelijkegezondheidszorg'">
-        Winstpercentage van instellingen voor <span class="ggzhighlight">GGZ</span>
-        in <span class="yearhighlight"> {{ yearToShow }} </span>
+        Winstpercentage van instellingen voor
+        <span class="ggzhighlight">GGZ</span> in
+        <span class="yearhighlight"> {{ yearToShow }} </span>
       </span>
       <span
         v-if="
@@ -16,8 +20,9 @@
             categoryToShow !== ''
         "
       >
-        Winstpercentage van instellingen voor <span class="typehighlight">{{ categoryToShow }}</span> 
-        in <span class="yearhighlight"> {{ yearToShow }} </span>
+        Winstpercentage van instellingen voor
+        <span class="typehighlight">{{ categoryToShow }}</span> in
+        <span class="yearhighlight"> {{ yearToShow }} </span>
       </span>
     </h2>
     <Search />
@@ -145,10 +150,10 @@ export default {
           return this.isZorgcowboy(d) ? "dataPoint zorg-cowboy" : "dataPoint";
         })
         .style("width", d => {
-          return this.isZorgcowboy(d) ? "60px" : "20px";
+          return this.isZorgcowboy(d) ? "40px" : "20px";
         })
         .style("height", d => {
-          return this.isZorgcowboy(d) ? "60px" : "20px";
+          return this.isZorgcowboy(d) ? "40px" : "20px";
         })
         .style("background", d => {
           if (!this.isZorgcowboy(d)) {

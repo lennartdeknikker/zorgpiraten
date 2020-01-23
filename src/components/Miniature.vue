@@ -1,5 +1,11 @@
 <template>
-    <svg class="graph" width="10em" height="10em"></svg>
+  <svg
+    class="graph"
+    width="10em"
+    height="10em"
+    @click="big = !big"
+    :class="{ bigger: big }"
+  ></svg>
 </template>
 
 <script>
@@ -11,7 +17,8 @@ export default {
   },
   data: function() {
     return {
-      chart: null
+      chart: null,
+      big: false
     };
   },
   computed: {
@@ -88,9 +95,28 @@ export default {
 </script>
 
 <style>
-
 .graph {
   height: 100%;
   width: 100%;
+  transition: width 1.2s ease;
+  cursor: pointer;
+}
+
+.bigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+  background-color: var(--grey-light);
+  background-image: radial-gradient(
+    var(--purple-light) 5%,
+    var(--grey-light) 5%
+  );
+  background-position: 0 0;
+  background-size: 40px 40px;
+  background-attachment: fixed;
+  scrollbar-width: none;
 }
 </style>

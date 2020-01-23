@@ -26,7 +26,7 @@ export default {
 <style>
 .introduction-container {
   position: fixed;
-  z-index: 3;
+  z-index: 4;
 }
 
 .introduction-elements {

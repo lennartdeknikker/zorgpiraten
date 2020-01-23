@@ -185,7 +185,7 @@ export default {
   position: fixed;
   top: 3rem;
   transition: transform 0.5s ease;
-  z-index: 2;
+  z-index: 3;
   overflow: hidden;
 }
 
