@@ -90,13 +90,13 @@ When you have solved the issue, you've been working on, you can do a pull reques
 After reviewing your request, your changes will be merged with the master branch and the branch for that issue will be deleted.
 
 ## Authors
+- Eva Janssen
 - [JesseJRos](https://github.com/JesseJRos)
 - [lennartdeknikker](https://github.com/lennartdeknikker)
-- Eva Janssen
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## Acknowledgements
 - Thanks to Pointer for clear briefing and helpful feedback along the way.
-- Thanks to [Razpudding](https://github.com/Razpudding), Maaike van Cruchten and other teachers for inspiring coaching sessions.
+- Thanks to  Maaike van Cruchten, [Razpudding](https://github.com/Razpudding) and other teachers for inspiring coaching sessions.
