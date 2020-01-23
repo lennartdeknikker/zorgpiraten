@@ -1,5 +1,5 @@
 <template>
-  <div class="filters-container" :class="{ hide: showFilters }">
+  <div class="filters-container" :class="{ hideform: showFilters }">
     <form action="#" @submit.prevent="scroll" class="form-filters">
       <h1 class="filters-text">Filters</h1>
       <fieldset class="pick-year">
@@ -186,7 +186,7 @@ export default {
   top: 3rem;
   transition: transform 0.5s ease;
   z-index: 3;
-  overflow: hidden;
+  left: -2rem;
 }
 
 .filters-text {
@@ -202,9 +202,10 @@ export default {
   background-color: var(--pointerblue);
   height: 100%;
   width: 20em;
-  overflow: hidden;
   padding: 1.5rem 0;
   border-bottom: 2px var(--yellow) solid;
+  position: relative;
+  left: 2rem;
 }
 
 .pick-year {
@@ -265,21 +266,23 @@ input[type="radio"]:checked + .label-text {
   height: 6em;
   font-size: 1.2em;
   margin-bottom: 0.1em;
+  position: relative;
+  left: 2rem;
 }
 
 .button-show-filters:focus {
   outline: none;
 }
 
-.hide {
-  transform: translateX(-20em);
+.hideform {
+  transform: translateX(-20rem);
 }
 
 @media (max-width: 600px) {
   .form-filters {
     width: 55vw;
   }
-  .hide {
+  .hideform {
     transform: translateX(-55vw);
   }
 }

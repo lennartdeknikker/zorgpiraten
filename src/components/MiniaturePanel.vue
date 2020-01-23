@@ -41,6 +41,7 @@ export default {
   align-items: center;
   justify-content: center;
   z-index: 2;
+  left: -2rem;
 }
 
 .miniature-panel {
@@ -53,6 +54,8 @@ export default {
   width: 20em;
   overflow: hidden;
   padding: 1.5rem 0;
+  position: relative;
+  left: 2rem;
 }
 
 .miniature-text {
@@ -71,6 +74,12 @@ export default {
   width: 2em;
   height: 6em;
   font-size: 1.2em;
+  position: relative;
+  left: 2rem;
+}
+
+.hide {
+  transform: translateX(-20rem);
 }
 
 @media (max-width: 600px) {
