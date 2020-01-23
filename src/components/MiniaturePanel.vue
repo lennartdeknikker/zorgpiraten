@@ -36,7 +36,7 @@ export default {
   height: auto;
   color: var(--grey);
   position: fixed;
-  top: 28.5rem;
+  bottom: 0;
   transition: transform 0.5s ease;
   z-index: 2;
   overflow: hidden;
